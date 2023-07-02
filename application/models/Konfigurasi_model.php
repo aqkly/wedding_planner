@@ -286,6 +286,15 @@ class Konfigurasi_model extends CI_Model {
 			return null;
 		}
 	}
+
+	public function get_tgl_book()
+	{
+		$c = "SELECT tgl_booking FROM transaksi WHERE status != '4' ORDER BY tgl_booking ASC";
+
+		$query = $this->db->query($c);
+
+		return $query->result_array();
+	}
 }
 
 /* End of file Konfigurasi_model.php */

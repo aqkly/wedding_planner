@@ -17,7 +17,8 @@
   	<link href="<?=base_url()?>assets/user/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   	<link href="<?=base_url()?>assets/user/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   	<link href="<?=base_url()?>assets/user/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vx/app-assets/vendors/css/pickers/pickadate/pickadate.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vx/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
 
     <title><?=$title?></title>
 </head>
@@ -142,7 +143,7 @@
                         <div class="row">
                             <div class="col-sm-3">TGL BOOKING</div>
                             <div class="col-sm-3">
-                                <input type="text" name="tgl_booking" class="form-control form-control-sm flatpickr-basic flatpickr-input" placeholder="YYYY-MM-DD" readonly="readonly" value="<?= date('Y-m-d') ?>">
+                                <input type="text" name="tgl_booking" id="tgl_booking" class="form-control form-control-sm flatpickr-basic flatpickr-input" placeholder="YYYY-MM-DD" readonly="readonly" value="<?= date('Y-m-d') ?>">
                             </div>
                             <div class="col-sm-4">
                                 <span class="text-muted">&nbsp; *Tgl Yang bisa dipilih, berarti tersedia</span>
@@ -536,7 +537,7 @@
   	<script src="<?=base_url()?>assets/user/lib/owlcarousel/owl.carousel.min.js"></script>
   	<script src="<?=base_url()?>assets/user/lib/lightbox/js/lightbox.min.js"></script>
  	<script src="<?=base_url()?>assets/user/lib/typed/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script src="<?= base_url(); ?>assets/vx/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
     <script src="<?= base_url(); ?>assets/vx/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
     <script src="<?= base_url(); ?>assets/vx/app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
@@ -549,6 +550,24 @@
  	<script type="text/javascript">
 
     $(document).ready(function(){
+
+        $('#tgl_booking').flatpickr({
+          enableTime: false,
+          minDate: 'today',
+          defaultDate: 'today',
+          disable: [ 
+              // function(date) {
+              //     return (date.getDay() === 0 || date.getDay() === 7);
+              // },
+              function(date) {                    
+                  const rdatedData = <?=$arr_trans?>;              
+                  return rdatedData.includes (toISODate(date));
+              },
+          ],
+          // locale: {
+          //     'firstDayOfWeek': 1 // start week on Monday
+          // },
+      });
 
         $(document).on('submit', '[id^=booking_]' , function(e) {
             e.preventDefault();
@@ -785,6 +804,12 @@
 	{
 		$("#mod_kostum").modal('show');
 	}
+
+    function toISODate(d) {
+        const z = n  => ('0' + n).slice(-2);
+        return d.getFullYear() + '-' +  z(d.getMonth()+1) + '-' + 
+        z(d.getDate()); 
+    }
  		
  	</script>
 </body>
