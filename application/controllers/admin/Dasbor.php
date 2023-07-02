@@ -28,6 +28,7 @@ class Dasbor extends CI_Controller {
 		$kostum 	= $this->kostum->listing();
 		$paket 		= $this->paket->listing();
 		$user 		= $this->user_model->listing();
+		$trans 	    = $this->konfigurasi_model->list_trans();
 
 		$data = array(	'title'		=> 'Halaman Dasbor Administrator',
 						'tema'		=> $tema,
@@ -38,6 +39,7 @@ class Dasbor extends CI_Controller {
 						'kostum'	=> $kostum,
 						'paket'		=> $paket,
 						'user'		=> $user,
+						'trans' 	=> $trans,
 						'isi'		=> 'admin/dasbor/list'
 			);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);	

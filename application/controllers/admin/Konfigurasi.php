@@ -7,11 +7,6 @@ class Konfigurasi extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//Proteksi
-		if($this->session->userdata('akses_level') != "Admin"){
-			$this->session->set_flashdata('sukses', 'Hak Akses anda tidak mencukupi');
-			redirect('admin/dasbor','refresh');
-		}
 		//End Proteksi
 		$this->load->model('konfigurasi_model');
 	}

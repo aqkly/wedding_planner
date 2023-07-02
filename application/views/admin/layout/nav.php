@@ -101,6 +101,19 @@
           </ul>
         </li>
 
+         <!-- Menu Layanan -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i> <span>Transaksi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= base_url('admin/transaksi') ?>"><i class="fa fa-table"></i> Data Transaksi</a></li>
+          </ul>
+        </li>
+
         <!-- Menu Konfigurasi -->
         <li class="treeview">
           <a href="#">

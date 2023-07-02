@@ -1,0 +1,70 @@
+html,
+body {
+  background: #fff !important; }
+
+.invoice-print {
+  min-width: 768px !important;
+  font-size: 15px !important; }
+
+.invoice-print .invoice-date-wrapper {
+  display: flex;
+  align-items: center; }
+
+.invoice-print .invoice-date-wrapper .invoice-date-title {
+  width: 8rem; }
+
+.invoice-print i,
+.invoice-print svg {
+  fill: #6e6b7b !important; }
+
+.invoice-print .invoice-total-wrapper {
+  width: 100%;
+  max-width: 12rem; }
+
+.invoice-print .invoice-total-wrapper .invoice-total-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.invoice-print .invoice-total-wrapper .invoice-total-item .invoice-total-title {
+  margin-bottom: 0.35rem; }
+
+.invoice-print .invoice-total-wrapper .invoice-total-item .invoice-total-amount {
+  margin-bottom: 0.35rem;
+  font-weight: 600; }
+
+.invoice-print * {
+  border-color: rgba(34, 41, 47, 0.5) !important;
+  color: #6e6b7b !important; }
+.footer{
+  background-color: #fafafa;
+}
+.client-address h6{
+  color: rgba(0,0,0,0.3);
+  font-size: 15px;
+}
+.client-address h2{
+  color: #222;
+  font-size: 13px;
+}
+.client-address h4{
+  font-size: 12px;
+  color: rgba(0,0,0,0.4);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.our-address h6{
+  color: rgba(0,0,0,0.3);
+  font-size: 15px;
+}
+.our-address h2{
+  color: #222;
+  font-size: 16px;
+}
+.our-address h4{
+  font-size: 13px;
+  color: rgba(0,0,0,0.4);
+  line-height: 1.65;
+  font-weight: 400;
+}

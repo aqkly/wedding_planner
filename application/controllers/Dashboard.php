@@ -19,6 +19,18 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		if(!empty($_SESSION['uid'])){
+			$id_user    = $_SESSION['uid'];	
+		}else{
+			$id_user    = null;
+		}
+
+		if(!empty($_SESSION['unama_lengkap'])){
+			$nama_user  = $_SESSION['unama_lengkap'];
+		}else{
+			$nama_user    = null;
+		}
+		
 		$tema 		= $this->tema->listing();
 		$musik 		= $this->musik->listing();
 		$catering 	= $this->catering->listing();
@@ -40,6 +52,8 @@ class Dashboard extends CI_Controller {
 			$x++;
 		}
 
+		$trans     = $this->konfigurasi_model->get_trans($id_user);
+
 		$data = array(
 						'title'			=> 'Naufal Wedding',
 						'tema' 			=> $tema,
@@ -50,6 +64,8 @@ class Dashboard extends CI_Controller {
 						'photo' 		=> $photo,
 						'kostum'		=> $kostum,
 						'konfigurasi'	=> $konfigurasi,
+						'trans' 		=> $trans,
+						'nama_user' 	=> $nama_user
 					);
 
 		$this->load->view('user/index', $data);
