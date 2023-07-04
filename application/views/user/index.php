@@ -259,7 +259,7 @@
                 
             </ul>
             <ul>
-            	<li>Copyright &copy; <?= '2023' ?> || Wedding Management System.</strong></li>
+            	<li>Copyright &copy; <?= '2023' ?> <a target="_blank" href="<?=base_url('login')?>">Wedding Admin</a></strong></li>
             </ul>
             <ul>
                 <li>
