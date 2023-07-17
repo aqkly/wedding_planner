@@ -31,6 +31,9 @@ class Photo extends CI_Controller {
 		$valid->set_rules('nama','Nama','required',
 				array('required'	=>	'%s harus diisi'));
 
+		$valid->set_rules('nama_phot','Nama Fotographer','required',
+				array('required'	=>	'%s harus diisi'));
+
 		$valid->set_rules('harga','Harga','required',
 				array('required'	=>	'%s harus diisi'));
 
@@ -76,6 +79,7 @@ class Photo extends CI_Controller {
 			$i = $this->input;
 			$data = array(	
 							'nama'		=>	$i->post('nama'),
+							'nama_fotographer' => $i->post('nama_phot'),
 							'harga'		=>	$i->post('harga'),
 							'deskripsi'	=>	$i->post('deskripsi'),
 							'foto'		=>	$upload_data['uploads']['file_name'],
@@ -101,6 +105,9 @@ class Photo extends CI_Controller {
 		$valid = $this->form_validation;
 
 		$valid->set_rules('nama','Nama','required',
+				array('required'	=>	'%s harus diisi'));
+
+		$valid->set_rules('nama_phot','Nama Fotographer','required',
 				array('required'	=>	'%s harus diisi'));
 
 		$valid->set_rules('harga','Harga','required',
@@ -161,6 +168,7 @@ class Photo extends CI_Controller {
 
 			$data = array(	'id'		=>	$id,
 							'nama'		=>	$i->post('nama'),
+							'nama_fotographer' => $i->post('nama_phot'),
 							'harga'		=>	$i->post('harga'),
 							'deskripsi'	=>	$i->post('deskripsi'),
 							'foto'		=>	$upload_data['uploads']['file_name'],		
@@ -173,6 +181,7 @@ class Photo extends CI_Controller {
 			$i = $this->input;
 			$data = array(	'id'		=>	$id,
 							'nama'	=>	$i->post('nama'),
+							'nama_fotographer' => $i->post('nama_phot'),
 							'harga'		=>	$i->post('harga'),
 							'deskripsi'	=>	$i->post('deskripsi'),		
 						);

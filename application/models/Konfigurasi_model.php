@@ -133,7 +133,7 @@ class Konfigurasi_model extends CI_Model {
 		}else if($table == 'musik'){
 			$c = "SELECT id, nama_musik FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
 		}else if($table == 'photo'){
-			$c = "SELECT id, nama FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
+			$c = "SELECT id, nama, nama_fotographer FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
 		}else if($table == 'kostum'){
 			$c = "SELECT id, nama FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
 		}

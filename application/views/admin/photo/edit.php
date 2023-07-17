@@ -16,6 +16,15 @@ echo form_open_multipart(base_url('admin/photo/edit/'.$photo->id),$attribut);
 <div class="row">
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
+			<label>NAMA FOTOGRAPHER</label>
+			<input type="text" name="nama_phot" class="form-control" placeholder="Nama Photo Grapher" value="<?= $photo->nama_fotographer ?>" required>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="form-group form-group-lg">
 			<label>NAMA</label>
 			<input type="text" name="nama" class="form-control" placeholder="Nama Photo" value="<?= $photo->nama ?>" required>
 		</div>

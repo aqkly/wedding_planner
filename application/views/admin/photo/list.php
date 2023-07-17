@@ -18,6 +18,7 @@ if($this->session->flashdata('sukses')){
     <tr>
       <th width="5%">NO</th>
       <th>FOTO</th>
+      <th>NAMA FOTOGRAPHER</th>
       <th>NAMA</th>
       <th>HARGA</th>
       <th>DESKRIPSI</th>
@@ -32,6 +33,7 @@ if($this->session->flashdata('sukses')){
 	    <tr>
 	      <td><?= $i++ ?></td>
 	      <td><img src="<?= base_url('assets/upload/image/thumbs/'.$b->foto) ?>" width="60" class="img img-thumbnail"></td>
+        <td><?= $b->nama_fotographer ?></td>
 	      <td><?= $b->nama ?></td>
 	      <td class="text-right"><?= number_format($b->harga) ?></td>
 	      <td><?= $b->deskripsi ?></td>

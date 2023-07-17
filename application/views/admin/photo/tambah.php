@@ -16,6 +16,15 @@ echo form_open_multipart(base_url('admin/photo/tambah'),$attribut);
 <div class="row">
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
+			<label>NAMA FOTOGRAPHER</label>
+			<input type="text" name="nama_phot" class="form-control" placeholder="Nama Photographer" value="<?= set_value('nama_fotographer') ?>" required>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="form-group form-group-lg">
 			<label>NAMA</label>
 			<input type="text" name="nama" class="form-control" placeholder="Nama" value="<?= set_value('nama') ?>" required>
 		</div>

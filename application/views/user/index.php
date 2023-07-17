@@ -509,7 +509,8 @@
 	        <table class="table">
 	        	<thead>
 	        		<tr>
-	        			<th>NAMA</th>
+	        			<th>NAMA FOTOGRAPHER</th>
+                        <th>NAMA</th>
 	        			<th>HARGA</th>
 	        			<th>DESKRIPSI</th>
 	        			<th>FOTO</th>
@@ -518,6 +519,7 @@
 	        	<tbody>
 	        		<?php foreach($photo as $t){ ?>
 	        		<tr>
+                        <td><?=$t->nama_fotographer?></td>
 	        			<td><?=$t->nama?></td>
 	        			<td><?=number_format($t->harga)?></td>	
 	        			<td><?=$t->deskripsi?></td>
@@ -729,7 +731,7 @@
                         var sel_photo = "<option value=''>-- PILIH PHOTO --</option>";
                         
                         for (var i = 0; i < photo.length; i++) {
-                            sel_photo += "<option value='"+photo[i].id+"'>"+photo[i].nama+"("+photo[i].nama_fotographer+")"+"</option>";
+                            sel_photo += "<option value='"+photo[i].id+"'>"+photo[i].nama+" ("+photo[i].nama_fotographer+")"+"</option>";
                         }
 
                         var sel_kostum = "<option value=''>-- PILIH KOSTUM --</option>";
