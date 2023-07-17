@@ -37,7 +37,7 @@
         </li>
 
         <!-- Menu Layanan -->
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-map-marker"></i> <span>Venue</span>
             <span class="pull-right-container">
@@ -47,31 +47,31 @@
           <ul class="treeview-menu">
             <li><a href="<?= base_url('admin/tempat') ?>"><i class="fa fa-table"></i> Data Venue</a></li>
           </ul>
-        </li>
+        </li> -->
 
         <!-- Menu Layanan -->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cutlery"></i> <span>Catering</span>
+            <i class="fa fa-paint-brush"></i> <span>Makeup</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?= base_url('admin/catering') ?>"><i class="fa fa-table"></i> Data Catering</a></li>
+            <li><a href="<?= base_url('admin/makeup') ?>"><i class="fa fa-table"></i> Data makeup</a></li>
           </ul>
         </li>
 
         <!-- Menu Layanan -->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-image"></i> <span>Photoshop</span>
+            <i class="fa fa-image"></i> <span>Foto / Video</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?= base_url('admin/photo') ?>"><i class="fa fa-table"></i> Data Photoshop</a></li>
+            <li><a href="<?= base_url('admin/photo') ?>"><i class="fa fa-table"></i> Data Foto / Video</a></li>
           </ul>
         </li>
 

@@ -125,13 +125,13 @@ class User extends CI_Controller {
 	{
 		$tema 	  = $this->konfigurasi_model->get_custom('tema');
 		$tempat   = $this->konfigurasi_model->get_custom('tempat');
-		$catering = $this->konfigurasi_model->get_custom('catering');
+		$makeup   = $this->konfigurasi_model->get_custom('makeup');
 		$musik 	  = $this->konfigurasi_model->get_custom('musik');
 		$photo 	  = $this->konfigurasi_model->get_custom('photo');
 		$kostum   = $this->konfigurasi_model->get_custom('kostum');
 
 		echo json_encode(['tema' => $tema, 'tempat' => $tempat, 
-						  'catering' => $catering, 'musik' => $musik,
+						  'makeup' => $makeup, 'musik' => $musik,
 						  'photo' => $photo, 'kostum' => $kostum]);
 	}
 
@@ -147,20 +147,20 @@ class User extends CI_Controller {
 	public function get_harga_custom()
 	{
 		$tema 		= $_POST['tema'];
-		$tempat 	= $_POST['tempat'];
-		$catering 	= $_POST['catering'];
+		// $tempat 	= $_POST['tempat'];
+		$makeup 	= $_POST['makeup'];
 		$musik 		= $_POST['musik'];
 		$photo 		= $_POST['photo'];
 		$kostum 	= $_POST['kostum'];
 
 		$harga_tema 	= $this->konfigurasi_model->get_harga_custom($tema, $table = 'tema');
-		$harga_tempat 	= $this->konfigurasi_model->get_harga_custom($tempat, $table = 'tempat');
-		$harga_catering = $this->konfigurasi_model->get_harga_custom($catering, $table = 'catering');
+		// $harga_tempat 	= $this->konfigurasi_model->get_harga_custom($tempat, $table = 'tempat');
+		$harga_makeup 	= $this->konfigurasi_model->get_harga_custom($makeup, $table = 'makeup');
 		$harga_musik 	= $this->konfigurasi_model->get_harga_custom($musik, $table = 'musik');
 		$harga_photo  	= $this->konfigurasi_model->get_harga_custom($photo, $table = 'photo');
 		$harga_kostum 	= $this->konfigurasi_model->get_harga_custom($kostum, $table = 'kostum');
 
-		$harga      = $harga_tema+$harga_tempat+$harga_catering+$harga_musik+$harga_photo+$harga_kostum;
+		$harga      = $harga_tema+$harga_makeup+$harga_musik+$harga_photo+$harga_kostum;
 
 		echo json_encode($harga);
 	}
@@ -192,10 +192,10 @@ class User extends CI_Controller {
 			$tempat 	 = null;
 		}
 
-		if(!empty($_POST['catering'])){
-			$catering 	 = $_POST['catering'];	
+		if(!empty($_POST['makeup'])){
+			$makeup 	 = $_POST['makeup'];	
 		}else{
-			$catering 	 = null;
+			$makeup 	 = null;
 		}
 
 		if(!empty($_POST['musik'])){
@@ -218,9 +218,12 @@ class User extends CI_Controller {
 		
 		$nama 	 	 = $_POST['nama'];
 		$harga 	 	 = $_POST['harga'];
+		$alamat 	 = $_POST['alamat'];
+		$ket 	 	 = $_POST['ket'];
 
-		$query = $this->db->query("INSERT INTO transaksi (`date`, no_transaksi, nama_pemesan, id_user, tgl_booking, jenis_booking, id_tempat, id_tema, id_musik, id_catering, id_photo, id_kostum, id_paket, total_harga, status, jth_tempo_bayar) 
-			VALUES ('$date', '$no_transaksi', '$nama', '$id_user', '$tgl_booking', '$jenis', '$tempat', '$tema', '$musik', '$catering', '$photo', '$kostum', '$paket', '$harga', '2', '$jth_bayar')");
+		$query = $this->db->query("INSERT INTO transaksi (`date`, no_transaksi, nama_pemesan, id_user, tgl_booking, jenis_booking, id_tema, id_musik, id_makeup, id_photo, id_kostum, id_paket, total_harga, status, jth_tempo_bayar, alamat, ket) 
+			VALUES ('$date', '$no_transaksi', '$nama', '$id_user', '$tgl_booking', '$jenis', '$tema', '$musik', '$makeup', '$photo', '$kostum', '$paket', '$harga', '2', '$jth_bayar',
+			'$alamat', '$ket')");
 
 		if($query){
 			echo json_encode(['result' => 'sukses']);

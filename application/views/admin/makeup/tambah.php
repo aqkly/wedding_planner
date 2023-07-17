@@ -10,14 +10,14 @@ if(isset($error_upload)) {
 //attribut
 $attribut = 'class="alert alert-info"';
 //form open
-echo form_open_multipart(base_url('admin/catering/tambah'),$attribut);
+echo form_open_multipart(base_url('admin/makeup/tambah'),$attribut);
 ?>
 
 <div class="row">
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
-			<label>NAMA CATERING</label>
-			<input type="text" name="nama_catering" class="form-control" placeholder="Nama Catering" value="<?= set_value('nama_catering') ?>" required>
+			<label>NAMA</label>
+			<input type="text" name="nama" class="form-control" placeholder="Nama Makeup" value="<?= set_value('nama') ?>" required>
 		</div>
 	</div>
 </div>

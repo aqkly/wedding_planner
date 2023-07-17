@@ -65,8 +65,8 @@ echo form_open(base_url('admin/konfigurasi'),$attribut);
 	</div>
 
 	<div class="form-group">
-		<label>Deskripsi Perusahaan / Organisasi / Website</label>
-		<textarea name="deskripsi" class="form-control" placeholder="Deskripsi"><?= $konfigurasi->deskripsi ?></textarea>
+		<label>No Rekening (Bank)</label>
+		<input name="no_rek" class="form-control" placeholder="No rekening" value="<?= $konfigurasi->no_rek ?>">
 	</div>
 
 	<div class="form-group" style="display: none">
@@ -77,11 +77,6 @@ echo form_open(base_url('admin/konfigurasi'),$attribut);
 	<div class="form-group">
 		<label>Alamat Perusahaan / Organisasi / Website</label>
 		<textarea name="alamat" class="form-control" placeholder="Alamat Perusahaan"><?= $konfigurasi->alamat ?></textarea>
-	</div>
-
-	<div class="form-group">
-		<label>Deskripsi Perusahaan / Organisasi / Website</label>
-		<textarea name="deskripsi" class="form-control" placeholder="Deskripsi"><?= $konfigurasi->deskripsi ?></textarea>
 	</div>
 
 	<div class="form-group" style="display: none">

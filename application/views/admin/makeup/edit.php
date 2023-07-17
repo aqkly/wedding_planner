@@ -10,14 +10,14 @@ if(isset($error_upload)) {
 //attribut
 $attribut = 'class="alert alert-info"';
 //form open
-echo form_open_multipart(base_url('admin/catering/edit/'.$catering->id),$attribut);
+echo form_open_multipart(base_url('admin/makeup/edit/'.$makeup->id),$attribut);
 ?>
 
 <div class="row">
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
-			<label>NAMA CATERING</label>
-			<input type="text" name="nama_catering" class="form-control" placeholder="Nama Catering" value="<?= $catering->nama_catering ?>" required>
+			<label>NAMA</label>
+			<input type="text" name="nama" class="form-control" placeholder="Nama Makeup" value="<?= $makeup->nama ?>" required>
 		</div>
 	</div>
 </div>
@@ -26,7 +26,7 @@ echo form_open_multipart(base_url('admin/catering/edit/'.$catering->id),$attribu
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
 			<label>HARGA</label>
-			<input type="number" step="any" name="harga" class="form-control" placeholder="Harga" value="<?= $catering->harga ?>" required>
+			<input type="number" step="any" name="harga" class="form-control" placeholder="Harga" value="<?= $makeup->harga ?>" required>
 		</div>
 	</div>	
 </div>
@@ -35,7 +35,7 @@ echo form_open_multipart(base_url('admin/catering/edit/'.$catering->id),$attribu
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
 			<label>DESKRIPSI</label>
-			<textarea required name="deskripsi" class="form-control" placeholder="Deskripsi"><?=$catering->deskripsi ?></textarea>
+			<textarea required name="deskripsi" class="form-control" placeholder="Deskripsi"><?=$makeup->deskripsi ?></textarea>
 		</div>
 	</div>
 </div>

@@ -1,23 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Catering extends CI_Controller {
+class Makeup extends CI_Controller {
 
 	//load database
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('catering_model', 'catering');
+		$this->load->model('makeup_model', 'makeup');
 	}
 
 	//Listing data barang
 	public function index()
 	{
-		$catering = $this->catering->listing();
+		$makeup = $this->makeup->listing();
 
-		$data = array(	'title'		=>	'Data Catering ('.count($catering).')',
-						'catering'	=>	$catering,
-						'isi'		=>	'admin/catering/list'
+		$data = array(	'title'		=>	'Data Makeup ('.count($makeup).')',
+						'makeup'	=>	$makeup,
+						'isi'		=>	'admin/makeup/list'
 				);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
@@ -28,7 +28,7 @@ class Catering extends CI_Controller {
 		//valid
 		$valid = $this->form_validation;
 
-		$valid->set_rules('nama_catering','Nama Catering','required',
+		$valid->set_rules('nama','Nama Makeup','required',
 				array('required'	=>	'%s harus diisi'));
 
 		$valid->set_rules('harga','Harga','required',
@@ -48,9 +48,9 @@ class Catering extends CI_Controller {
 	        if ( ! $this->upload->do_upload('gambar')) {
 		//End Validasi
 
-		$data = array(	'title'			=>	'Tambah data Catering',
+		$data = array(	'title'			=>	'Tambah data Makeup',
 						'error_upload'	=>	 $this->upload->display_errors(),
-						'isi'			=>	'admin/catering/tambah'
+						'isi'			=>	'admin/makeup/tambah'
 			);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 		//Masuk database
@@ -75,19 +75,19 @@ class Catering extends CI_Controller {
 
 			$i = $this->input;
 			$data = array(	
-							'nama_catering'=>	$i->post('nama_catering'),
+							'nama'		=>	$i->post('nama'),
 							'harga'		=>	$i->post('harga'),
 							'deskripsi'	=>	$i->post('deskripsi'),
 							'foto'		=>	$upload_data['uploads']['file_name'],
 						);
 
-			$this->catering->tambah($data);
+			$this->makeup->tambah($data);
 			$this->session->set_flashdata('sukses', 'Data Telah Ditambah');
-			redirect(base_url('admin/catering'),'refresh');
+			redirect(base_url('admin/makeup'),'refresh');
 		}}
 		//End Masuk Database
-		$data = array(	'title'			=> 'Tambah data Catering',
-						'isi'			=> 'admin/catering/tambah'
+		$data = array(	'title'			=> 'Tambah data Makeup',
+						'isi'			=> 'admin/makeup/tambah'
 			);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
@@ -95,12 +95,12 @@ class Catering extends CI_Controller {
 	//Edit
 	public function edit($id)
 	{
-		$catering = $this->catering->detail($id);
+		$makeup = $this->makeup->detail($id);
 
 		//valid
 		$valid = $this->form_validation;
 
-		$valid->set_rules('nama_catering','Nama Catering','required',
+		$valid->set_rules('nama','Nama Makeup','required',
 				array('required'	=>	'%s harus diisi'));
 
 		$valid->set_rules('harga','Harga','required',
@@ -123,8 +123,8 @@ class Catering extends CI_Controller {
 	        if ( ! $this->upload->do_upload('gambar')) {
 		//End Validasi
 
-		$data = array(	'title'			=>	'Edit data Catering '.$catering->nama_catering,
-						'catering'			=>	$catering,
+		$data = array(	'title'			=>	'Edit data Makeup '.$makeup->nama,
+						'makeup'		=>	$makeup,
 						'error_upload'	=>	 $this->upload->display_errors(),
 						'isi'			=>	'admin/catering/edit'
 			);
@@ -152,39 +152,39 @@ class Catering extends CI_Controller {
 			$i = $this->input;
 
 			//Hapus gambar lama jika ada upload gambar baru
-			if($catering->foto != "")
+			if($makeup->foto != "")
 			{
-				unlink('./assets/upload/image/'.$catering->foto);
-				unlink('./assets/upload/image/thumbs/'.$catering->foto);
+				unlink('./assets/upload/image/'.$makeup->foto);
+				unlink('./assets/upload/image/thumbs/'.$makeup->foto);
 			}
 			//End Hapus gambar
 
 			$data = array(	'id'		=>	$id,
-							'nama_catering'	=>	$i->post('nama_catering'),
+							'nama'	=>	$i->post('nama'),
 							'harga'		=>	$i->post('harga'),
 							'deskripsi'	=>	$i->post('deskripsi'),
 							'foto'		=>	$upload_data['uploads']['file_name'],		
 						);
-			$this->catering->edit($data);
+			$this->makeup->edit($data);
 			$this->session->set_flashdata('sukses', 'Data Telah DiUpdate');
-			redirect(base_url('admin/catering'),'refresh');
+			redirect(base_url('admin/makeup'),'refresh');
 		}}else {
 			//Update barang tanpa gambar
 			$i = $this->input;
 			$data = array(	'id'		=>	$id,
-							'nama_catering'	=>	$i->post('nama_catering'),
+							'nama'	=>	$i->post('nama'),
 							'harga'		=>	$i->post('harga'),
 							'deskripsi'	=>	$i->post('deskripsi'),		
 						);
-			$this->catering->edit($data);
+			$this->makeup->edit($data);
 			$this->session->set_flashdata('sukses', 'Data Telah DiUpdate');
-			redirect(base_url('admin/catering'),'refresh');
+			redirect(base_url('admin/makeup'),'refresh');
 
 		}}
 		//End Masuk Database
-		$data = array(	'title'			=>	'Edit data Catering '.$catering->nama_catering,
-						'catering'			=>	$catering,
-						'isi'			=>	'admin/catering/edit'
+		$data = array(	'title'			=>	'Edit data Makeup '.$makeup->nama,
+						'makeup'			=>	$makeup,
+						'isi'			=>	'admin/makeup/edit'
 			);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
@@ -195,17 +195,17 @@ class Catering extends CI_Controller {
 		//Proteksi delete
 		$this->check_login->check();
 		
-		$catering = $this->catering->detail($id);
+		$makeup = $this->makeup->detail($id);
 
 		//Hapus Gambar
-		if($catering->foto != "") {
-			unlink('./assets/upload/image/'.$catering->foto);
-			unlink('./assets/upload/image/thumbs/'.$catering->foto);
+		if($makeup->foto != "") {
+			unlink('./assets/upload/image/'.$makeup->foto);
+			unlink('./assets/upload/image/thumbs/'.$makeup->foto);
 		}
 		//End Hapus Gambar
-		$data = array('id'	=>	$catering->id);
-		$this->catering->delete($data);
+		$data = array('id'	=>	$makeup->id);
+		$this->makeup->delete($data);
 		$this->session->set_flashdata('sukses', 'Data Telah dihapus');
-		redirect(base_url('admin/catering'),'refresh');
+		redirect(base_url('admin/makeup'),'refresh');
 	}
 }

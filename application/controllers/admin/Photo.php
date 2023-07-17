@@ -15,7 +15,7 @@ class Photo extends CI_Controller {
 	{
 		$photo = $this->photo->listing();
 
-		$data = array(	'title'		=>	'Data Photoshop ('.count($photo).')',
+		$data = array(	'title'		=>	'Data Foto / Video ('.count($photo).')',
 						'photo'		=>	$photo,
 						'isi'		=>	'admin/photo/list'
 				);

@@ -25,83 +25,8 @@ echo form_open(base_url('admin/paket/tambah'),$attribut);
 <div class="row">
 	<div class="col-md-12">
 		<div class="form-group form-group-lg">
-			<label>TEMA</label>
-			<select name="tema" class="form-control" required>
-				<option>-- PILIH TEMA --</option>
-				<?php foreach ($tema as $t) { ?>
-					<option value="<?=$t['id']?>"><?=$t['nama']?></option>
-				<?php } ?>
-			</select>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="form-group form-group-lg">
-			<label>VENUE</label>
-			<select name="tempat" class="form-control" required>
-				<option>-- PILIH VENUE --</option>
-				<?php foreach ($tempat as $t) { ?>
-					<option value="<?=$t['id']?>"><?=$t['nama']?></option>
-				<?php } ?>
-			</select>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="form-group form-group-lg">
-			<label>MUSIK</label>
-			<select name="musik" class="form-control" required>
-				<option>-- PILIH MUSIK --</option>
-				<?php foreach ($musik as $t) { ?>
-					<option value="<?=$t['id']?>"><?=$t['nama']?></option>
-				<?php } ?>
-			</select>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="form-group form-group-lg">
-			<label>PHOTO</label>
-			<select name="photo" class="form-control" required>
-				<option>-- PILIH PHOTO --</option>
-				<?php foreach ($photo as $t) { ?>
-					<option value="<?=$t['id']?>"><?=$t['nama']?></option>
-				<?php } ?>
-			</select>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="form-group form-group-lg">
-			<label>KOSTUM</label>
-			<select name="kostum" class="form-control" required>
-				<option>-- PILIH KOSTUM --</option>
-				<?php foreach ($kostum as $t) { ?>
-					<option value="<?=$t['id']?>"><?=$t['nama']?></option>
-				<?php } ?>
-			</select>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="form-group form-group-lg">
-			<label>CATERING</label>
-			<select name="catering" class="form-control" required>
-				<option>-- PILIH CATERING --</option>
-				<?php foreach ($catering as $t) { ?>
-					<option value="<?=$t['id']?>"><?=$t['nama']?></option>
-				<?php } ?>
-			</select>
+			<label>BERISI</label>
+			<textarea name="berisi" id="berisi_paket" class="form-control" placeholder="Berisi"><?= set_value('berisi') ?></textarea>
 		</div>
 	</div>
 </div>

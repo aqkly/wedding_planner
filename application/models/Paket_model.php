@@ -72,14 +72,14 @@ class Paket_model extends CI_Model {
 		}
 	}
 
-	public function nama_catering($id)
+	public function nama_makeup($id)
 	{
-		$c = "SELECT nama_catering FROM catering WHERE id = '$id'";
+		$c = "SELECT nama FROM makeup WHERE id = '$id'";
 
 		$query = $this->db->query($c);
 
 		if($query->num_rows() > 0){
-			return $query->result_array()[0]['nama_catering'];
+			return $query->result_array()[0]['nama'];
 		}else{
 			return null;
 		}
@@ -139,9 +139,9 @@ class Paket_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function get_catering()
+	public function get_makeup()
 	{
-		$c = "SELECT id, nama_catering as nama FROM catering WHERE status = '1'";
+		$c = "SELECT id, nama as nama FROM makeup WHERE status = '1'";
 
 		$query = $this->db->query($c);
 

@@ -19,7 +19,7 @@
 
     <button type="button" class="btn btn-outline pull-right" data-dismiss="modal"><i class="fa fa-backward"></i> Tidak, Batalkan</button>
 
-    <a href="<?= base_url('admin/catering/delete/'.$b->id) ?>" class="btn btn-outline pull-right"><i class="fa fa-trash-o"></i> Ya, Hapus Data Ini</a>
+    <a href="<?= base_url('admin/makeup/delete/'.$b->id) ?>" class="btn btn-outline pull-right"><i class="fa fa-trash-o"></i> Ya, Hapus Data Ini</a>
   </div>
 </div>
 <!-- /.modal-content -->

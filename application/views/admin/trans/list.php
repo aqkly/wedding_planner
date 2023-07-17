@@ -5,6 +5,12 @@ if($this->session->flashdata('sukses')){
   echo $this->session->flashdata('sukses');
   echo '</div>';
 }
+
+if($this->session->flashdata('gagal')){
+  echo '<div class="alert alert-warning">';
+  echo $this->session->flashdata('gagal');
+  echo '</div>';
+}
 ?>
 
  <table class="table table-bordered table-striped">
@@ -14,16 +20,13 @@ if($this->session->flashdata('sukses')){
       <th>TGL BOOKING</th>
       <th>JENIS BOOKING</th>
       <th>NAMA PAKET</th>
-      <th>NAMA TEMPAT</th>
       <th>NAMA TEMA</th>
-      <th>NAMA CATERING</th>
+      <th>NAMA MAKEUP</th>
       <th>NAMA MUSIK</th>
       <th>NAMA PHOTO</th>
       <th>NAMA KOSTUM</th>
       <th>TOTAL HARGA</th>
       <th>JTH TEMPO</th>
-      <th>TGL BAYAR</th>
-      <th>BUKTI BAYAR</th>
       <th>NAMA USER</th>
       <th>STATUS</th>
       <th width="15%">AKSI</th>
@@ -36,25 +39,16 @@ if($this->session->flashdata('sukses')){
     ?>
 	    <tr>
 	      <td><?=$b['no_transaksi']?></td>
-	      <td><?= date('d-m-Y', strtotime($b['tgl_booking'])) ?></td>
+	      <td style="white-space:nowrap"><?= date('d-m-Y', strtotime($b['tgl_booking'])) ?></td>
 	      <td><?=$b['jenis_booking']?></td>
 	      <td><?=$b['nama_paket']?></td>
-	      <td><?=$b['nama_tempat']?></td>
 	      <td><?=$b['nama_tema']?></td>
-	      <td><?=$b['nama_catering']?></td>
+	      <td><?=$b['nama_makeup']?></td>
 	      <td><?=$b['nama_musik']?></td>
 	      <td><?=$b['nama_photo']?></td>
 	      <td><?=$b['nama_kostum']?></td>
 	      <td><?=number_format($b['total_harga'])?></td>
 	      <td><?= date('d-m-Y', strtotime($b['jth_tempo_bayar'])) ?></td>
-	      <td>
-	      	<?php if(!empty($b['tgl_bayar'])){ ?>
-	      		<?= date('d-m-Y', strtotime($b['tgl_bayar'])) ?>
-	      	<?php }else{ ?>
-	      		-
-	      	<?php } ?>	
-	      </td>
-	      <td><img src="<?= base_url('assets/upload/image/thumbs/'.$b['bukti_bayar']) ?>" width="60" class="img img-thumbnail"></td>
 	      <td><?=$b['nama_user']?></td>
 	      <td>
 	      	<?php if($b['status'] == '1'){ ?>
@@ -62,18 +56,25 @@ if($this->session->flashdata('sukses')){
             <?php }else if($b['status'] == '2'){ ?>
                 Menunggu Pembayaran
             <?php }else if($b['status'] == '3'){ ?>
-                Sudah Bayar
+                Bayar Sebagian
             <?php }else if($b['status'] == '4'){ ?>
+                Sudah Full Bayar
+            <?php }else if($b['status'] == '5'){ ?>
                 Batal
             <?php } ?>
 	      </td>
-	      <td>
-	      	<?php if($b['status'] == '1' || $b['status'] == '2'){ ?>
+	      <td style="white-space:nowrap; ">
+          <a href="<?=base_url('admin/transaksi/detail/'.$b['id'])?>" class="btn btn-info btn-xs">Detail</a>
+
+	      	<?php if($b['total_bayar'] < $b['total_harga']){ ?>
 	      	<button type="button" onclick="konf_trans('<?=$b['id']?>')" class="btn btn-success btn-xs">Konf Bayar</button>
 	      	<?php } ?>
-	      	<?php if($b['status'] != '4' && $b['status'] != '3'){ ?>
+
+	      	<?php if($b['status'] != '5' && $b['status'] != '3' && $b['status'] != '4'){ ?>
 	      		<button type="button" onclick="batal_trans('<?=$b['id']?>')" class="btn btn-danger btn-xs">Batalkan</button>
 	      	<?php } ?>
+
+          <a href="<?=base_url('admin/transaksi/print_data/'.$b['id'])?>" class="btn btn-default btn-xs">Print</a>
 	      </td>
 	    </tr>
     </tr>

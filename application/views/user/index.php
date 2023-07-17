@@ -34,7 +34,7 @@
         </div>
         <div class="showcase-content">
             <h1>Take Your Dream Wedding</h1>
-            <p><i>With Naufal Wedding Planner</i></p>
+            <p><i>With Rumah Rias Yasmine</i></p>
         </div>
     </header>
 
@@ -63,9 +63,9 @@
             <div id="tab-1-content" class="tab-content-item show">
                 <div class="tab-1-content-inner">
                 	<div>
-                		<button type="button" onclick="modal_tempat()">
-	                		<img src="<?=base_url('assets/user/img/tempat.jpg')?>" style="width: 230px !important;height: 170px !important" />
-	                        <p class="text-md">Tempat / Gedung</p>
+                		<button type="button" onclick="modal_makeup()">
+	                		<img src="<?=base_url('assets/user/img/makeup.jpg')?>" style="width: 230px !important;height: 170px !important" />
+	                        <p class="text-md">Makeup</p>
                     	</button>
                 	</div>
 
@@ -77,52 +77,39 @@
                 	</div>
 
                 	<div>
-                		<button type="button" onclick="modal_catering()">
-	                		<img src="<?=base_url('assets/user/img/catering.jpg')?>" style="width: 230px !important;height: 170px !important" />
-	                        <p class="text-md">Catering</p>
-                    	</button>
-                	</div>
-
-                	<div>
                 		<button type="button" onclick="modal_musik()">
 	                		<img src="<?=base_url('assets/user/img/musik.jpg')?>" style="width: 230px !important;height: 170px !important" />
 	                        <p class="text-md">Musik</p>
                     	</button>
                 	</div>
-
-                	<div>
-                		<button type="button" onclick="modal_photo()">
-	                		<img src="<?=base_url('assets/user/img/photo.jpg')?>" style="width: 230px !important;height: 170px !important" />
-	                        <p class="text-md">Photoshop</p>
-                    	</button>
-                	</div>
-
-                	<div>
-                		<button type="button" onclick="modal_kostum()">
-	                		<img src="<?=base_url('assets/user/img/kostum.jpg')?>" style="width: 230px !important;height: 170px !important" />
-	                        <p class="text-md">Kostum</p>
-                    	</button>
-                	</div>
                 </div>
+
+                <div class="tabs-tes">
+                    <div>
+                        <button type="button" onclick="modal_photo()">
+                            <img src="<?=base_url('assets/user/img/photo.jpg')?>" style="width: 230px !important;height: 170px !important;" />
+                            <p class="text-md">Foto / Video</p>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button type="button" onclick="modal_kostum()">
+                            <img src="<?=base_url('assets/user/img/kostum.jpg')?>" style="width: 230px !important;height: 170px !important" />
+                            <p class="text-md">Kostum</p>
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Tab 2 Content -->
             <div id="tab-2-content" class="tab-content-item">
-                <div class="tab-2-content-top">
-                    <p class="text-lg">
-                        Beberapa paket wedding yang bisa kamu pilih
-                    </p>
-                </div>
                 <div class="tab-2-content-bottom">
                 	<?php foreach ($paket as $p) { ?>
                     <div>
-                        <p class="text-md"><?=$p['nama_paket']?></p>
-                        <p style="color:#999">
-                            <strong>Tempat / Gedung</strong> : <?=$p['nama_tempat']?> <br> <strong>Tema</strong>: <?=$p['nama_tema']?> <br> <strong>Catering</strong>: <?=$p['nama_catering']?>
-                            <br> <strong>Musik</strong>: <?=$p['nama_musik']?> <br> <strong>Photo</strong>: <?=$p['nama_photo']?> <br> <strong>Kostum</strong>: <?=$p['nama_kostum']?>
-                        </p>
-
-                        <a href="#" class="btn btn-lg"><?=number_format($p['harga'])?></a>
+                        <h4><?=$p['nama_paket']?></h4>
+                        <div style="white-space: nowrap"><?=$p['berisi']?></div>
+                        <a href="#" class="btn"><?=number_format($p['harga'])?></a>
                     </div>
                 <?php } ?>
                 </div>
@@ -131,7 +118,7 @@
             <!-- Tab 3 Content -->
             <div id="tab-3-content" class="tab-content-item">
                 <?php if(empty($_SESSION['uid'])){ ?>
-                    <h4>Silahkan login untuk booking Naufal Wedding</h4>
+                    <h4>Silahkan login untuk booking Rumah Rias Yasmine</h4>
                 <?php }else{ ?>
 
                     <div>
@@ -173,9 +160,23 @@
                         </div>
                         <br>
                         <div class="row">
+                            <div class="col-sm-3">ALAMAT</div>
+                            <div class="col-sm-3">
+                                <textarea name="alamat" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="col-sm-3">TOTAL HARGA</div>
                             <div class="col-sm-3">
                                 <input type="number" value="0" step="any" name="harga" id="harga" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">KETERANGAN</div>
+                            <div class="col-sm-3">
+                                <textarea name="ket" class="form-control form-control-sm"></textarea>
                             </div>
                         </div>
                         <br>
@@ -203,36 +204,73 @@
                             <thead>
                                 <tr>
                                     <th>TGL BOOKING</th>
-                                    <th>NO TRANSAKSI</th>
                                     <th>NAMA PEMESAN</th>
-                                    <th>NAMA USER</th>
-                                    <th>JENIS TRAKSAKSI</th>
+                                    <th>ALAMAT</th>
+                                    <th>BOOKING ORDER</th>
                                     <th>TOTAL HARGA</th>
-                                    <th>TGL JTH TEMPO</th>
+                                    <th>NO REKENING</th>
+                                    <th>KETERANGAN</th>
                                     <th>STATUS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($trans as $t) { ?>
                                     <tr>
-                                        <td><?=date('d-m-Y', strtotime($t['tgl_booking']))?></td>
-                                        <td><?=$t['no_transaksi']?></td>
+                                        <td style="white-space: nowrap"><?=date('d-m-Y', strtotime($t['tgl_booking']))?></td>
                                         <td><?=$t['nama_pemesan']?></td>
-                                        <td><?=$nama_user?></td>
-                                        <td><?=$t['jenis_booking']?></td>
+                                        <td><?=$t['alamat']?></td>
+                                        <td>
+                                            <?php if($t['jenis_booking'] == 'paketan'){ ?>
+                                                <?=$t['nama_paket']?>        
+                                            <?php }else{ ?>
+                                                <?php if(!empty($t['nama_tema'])){ ?>
+                                                    <li>Tema: <?=$t['nama_tema']?></li>
+                                                <?php }else{ ?>
+                                                    <li>Tema: -</li>
+                                                <?php } ?>
+
+                                                <?php if(!empty($t['nama_musik'])){ ?>
+                                                    <li>Musik: <?=$t['nama_musik']?></li>
+                                                <?php }else{ ?>
+                                                    <li>Musik: -</li>
+                                                <?php } ?>
+
+                                                <?php if(!empty($t['nama_makeup'])){ ?>
+                                                    <li>Makeup: <?=$t['nama_makeup']?></li>
+                                                <?php }else{ ?>
+                                                    <li>Makeup: -</li>
+                                                <?php } ?>
+
+                                                <?php if(!empty($t['nama_photo'])){ ?>
+                                                    <li>Photo: <?=$t['nama_photo']?></li>
+                                                <?php }else{ ?>
+                                                    <li>Photo: -</li>
+                                                <?php } ?>
+
+                                                <?php if(!empty($t['nama_kostum'])){ ?>
+                                                    <li>Kostum: <?=$t['nama_kostum']?></li>
+                                                <?php }else{ ?>
+                                                    <li>Kostum: -</li>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </td>
                                         <td><?=number_format($t['total_harga'])?></td>
-                                        <td><?=date('d-m-Y H:i:s', strtotime($t['jth_tempo_bayar']))?></td>
+                                        <td><?=$konfigurasi->no_rek?></td>
+                                        <td><?=$t['ket']?></td>
                                         <td>
                                             <?php if($t['status'] == '1'){ ?>
                                                 <div>Baru</div>
                                             <?php }else if($t['status'] == '2'){ ?>
-                                                <div>Menunggu Pembayaran (Jika sudah membayar silahkan konfirmasi melalu WA, Jika tidak ada konfirmasi setelah tgl jatuh tempo maka order akan otomatis d batalkan)</div>
+                                                <div>Menunggu Pembayaran (Silahkan membayar tgl booking Rp. 3000.000,00 agar tgl anda terbooking sebelum tgl: <?=date('d-m-Y H:i:s', strtotime($t['jth_tempo_bayar']))?>)</div>
                                             <?php }else if($t['status'] == '3'){ ?>
-                                                <div>Sudah Bayar</div>
+                                                <div>Bayar Sebagian</div>
                                             <?php }else if($t['status'] == '4'){ ?>
+                                                <div>Sudah Full Bayar</div>
+                                            <?php }else if($t['status'] == '5'){ ?>
                                                 <div>Batal</div>
                                             <?php } ?>
                                         </td>
+
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -242,6 +280,22 @@
                 <?php } ?>
             </div>
         </div>
+    </section>
+
+    <section class="tabs">
+        <div class="peringatan">
+            <div class="text-center"><h3>KETENTUAN PAKET WEDDING</h3></div>
+            <hr>
+            <li>BOOKING TANGGAL RP 3.000.000,-</li>
+            <li>DP 75% SEBELUM ACARA BERLANGSUNG</li>
+            <li>PELUNASAN MAKSIMAL H+1 SETELAH ACARA BERLANGSUNG</li>
+            <li>JIKA TERJADI PEMBATALAN MAKA BOOKING TIDAK DIKEMBALIKAN DALAM
+            BENTUK APAPUN</li>
+            <li>HARGA BISA KURANG ATAU LEBIH TERGANTUNG LUASNYA LOKASI
+            PEMASANGAN TENDA</li>
+            <li>JIKA ADA TAMBAHAN MAKE UP KENA CHARGE PER ORANG</li>
+        <div>
+            
     </section>
 
 	<footer class="footer">
@@ -358,11 +412,11 @@
 	  </div>
 	</div>
 
-	<div class="modal fade" id="mod_catering" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="mod_makeup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">CATERING</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">MAKEUP</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -378,9 +432,9 @@
 	        		</tr>
 	        	</thead>
 	        	<tbody>
-	        		<?php foreach($catering as $t){ ?>
+	        		<?php foreach($makeup as $t){ ?>
 	        		<tr>
-	        			<td><?=$t->nama_catering?></td>
+	        			<td><?=$t->nama?></td>
 	        			<td><?=number_format($t->harga)?></td>	
 	        			<td><?=$t->deskripsi?></td>
 	        			<td>
@@ -642,8 +696,8 @@
                     success: function (data) {
 
                         var tema        = data.tema;
-                        var tempat      = data.tempat;
-                        var catering    = data.catering;
+                        // var tempat      = data.tempat;
+                        var makeup      = data.makeup;
                         var musik       = data.musik;
                         var photo       = data.photo;
                         var kostum      = data.kostum;
@@ -654,16 +708,16 @@
                             sel_tema += "<option value='"+tema[i].id+"'>"+tema[i].nama_tema+"</option>";
                         }
 
-                        var sel_gedung = "<option value=''>-- PILIH TEMPAT / GEDUNG --</option>";
+                        // var sel_gedung = "<option value=''>-- PILIH TEMPAT / GEDUNG --</option>";
                         
-                        for (var i = 0; i < tempat.length; i++) {
-                            sel_gedung += "<option value='"+tempat[i].id+"'>"+tempat[i].nama_lokasi+"</option>";
-                        }
+                        // for (var i = 0; i < tempat.length; i++) {
+                        //     sel_gedung += "<option value='"+tempat[i].id+"'>"+tempat[i].nama_lokasi+"</option>";
+                        // }
 
-                        var sel_catering = "<option value=''>-- PILIH CATERING --</option>";
+                        var sel_makeup = "<option value=''>-- PILIH MAKEUP --</option>";
                         
-                        for (var i = 0; i < catering.length; i++) {
-                            sel_catering += "<option value='"+catering[i].id+"'>"+catering[i].nama_catering+"</option>";
+                        for (var i = 0; i < makeup.length; i++) {
+                            sel_makeup += "<option value='"+makeup[i].id+"'>"+makeup[i].nama+"</option>";
                         }
 
                         var sel_musik = "<option value=''>-- PILIH MUSIK --</option>";
@@ -675,7 +729,7 @@
                         var sel_photo = "<option value=''>-- PILIH PHOTO --</option>";
                         
                         for (var i = 0; i < photo.length; i++) {
-                            sel_photo += "<option value='"+photo[i].id+"'>"+photo[i].nama+"</option>";
+                            sel_photo += "<option value='"+photo[i].id+"'>"+photo[i].nama+"("+photo[i].nama_fotographer+")"+"</option>";
                         }
 
                         var sel_kostum = "<option value=''>-- PILIH KOSTUM --</option>";
@@ -684,7 +738,7 @@
                             sel_kostum += "<option value='"+kostum[i].id+"'>"+kostum[i].nama+"</option>";
                         }
 
-                        html = "<div class='row'><div class='col-sm-3'>TEMA</div><div class='col-sm-3'><select name='tema' id='tema' onchange='on_tema()' class='form-control form-control-sm'>"+sel_tema+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>GEDUNG</div><div class='col-sm-3'><select name='tempat' id='tempat' onchange='on_tempat()' class='form-control form-control-sm'>"+sel_gedung+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>CATERING</div><div class='col-sm-3'><select name='catering' id='catering' onchange='on_catering()' class='form-control form-control-sm'>"+sel_catering+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>MUSIK</div><div class='col-sm-3'><select name='musik' id='musik' onchange='on_musik()'class='form-control form-control-sm'>"+sel_musik+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>PHOTO</div><div class='col-sm-3'><select name='photo' id='photo' onchange='on_photo()' class='form-control form-control-sm'>"+sel_photo+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>KOSTUM</div><div class='col-sm-3'><select name='kostum' id='kostum' onchange='on_kostum()' class='form-control form-control-sm'>"+sel_kostum+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div>"; 
+                        html = "<div class='row'><div class='col-sm-3'>TEMA</div><div class='col-sm-3'><select name='tema' id='tema' onchange='on_tema()' class='form-control form-control-sm'>"+sel_tema+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>MAKEUP</div><div class='col-sm-3'><select name='makeup' id='makeup' onchange='on_catering()' class='form-control form-control-sm'>"+sel_makeup+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>MUSIK</div><div class='col-sm-3'><select name='musik' id='musik' onchange='on_musik()'class='form-control form-control-sm'>"+sel_musik+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>PHOTO</div><div class='col-sm-3'><select name='photo' id='photo' onchange='on_photo()' class='form-control form-control-sm'>"+sel_photo+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div><br><div class='row'><div class='col-sm-3'>KOSTUM</div><div class='col-sm-3'><select name='kostum' id='kostum' onchange='on_kostum()' class='form-control form-control-sm'>"+sel_kostum+"</select></div><div class='col-sm-4 text-muted'>&nbsp; *Kosongkan jika tidak order ini</div></div>"; 
 
                         $("#ini_form_book_jenis").html(html);
                     }
@@ -717,8 +771,8 @@
         }else if(jenis == 'custom'){
             
             var tema     = $("#tema").val();
-            var tempat   = $("#tempat").val();
-            var catering = $("#catering").val();
+            // var tempat   = $("#tempat").val();
+            var makeup   = $("#makeup").val();
             var musik    = $("#musik").val();
             var photo    = $("#photo").val();
             var kostum   = $("#kostum").val();
@@ -726,7 +780,7 @@
             $.ajax({
                 type: "POST",
                 url: "<?= base_url('user/get_harga_custom') ?>",
-                data: "tema="+tema+"&tempat="+tempat+"&catering="+catering+"&musik="+musik+"&photo="+photo+"&kostum="+kostum,
+                data: "tema="+tema+"&makeup="+makeup+"&musik="+musik+"&photo="+photo+"&kostum="+kostum,
                 dataType: "JSON",
                 success: function (data) {
 
@@ -785,9 +839,9 @@
 		$("#mod_tema").modal('show');
 	}
 
-	function modal_catering()
+	function modal_makeup()
 	{
-		$("#mod_catering").modal('show');
+		$("#mod_makeup").modal('show');
 	}
 
 	function modal_musik()

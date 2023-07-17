@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('tema_model', 'tema');
 		$this->load->model('musik_model', 'musik');
 		$this->load->model('tempat_model', 'tempat');
-		$this->load->model('catering_model', 'catering');
+		$this->load->model('makeup_model', 'makeup');
 		$this->load->model('photo_model', 'photo');
 		$this->load->model('kostum_model', 'kostum');
 		$this->load->model('paket_model', 'paket');
@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
 		
 		$tema 		= $this->tema->listing();
 		$musik 		= $this->musik->listing();
-		$catering 	= $this->catering->listing();
+		$makeup 	= $this->makeup->listing();
 		$tempat 	= $this->tempat->listing();
 		$photo 		= $this->photo->listing();
 		$kostum 	= $this->kostum->listing();
@@ -41,18 +41,18 @@ class Dashboard extends CI_Controller {
 
 		$konfigurasi 	= $this->konfigurasi_model->listing();
 
+		$trans     = $this->konfigurasi_model->get_trans($id_user);
+
 		$x = 0;
-		foreach ($paket as $p) {
-			$paket[$x]['nama_tema'] 	= $this->paket->nama_tema($p['id_tema']);
-			$paket[$x]['nama_tempat'] 	= $this->paket->nama_tempat($p['id_tempat']);
-			$paket[$x]['nama_musik'] 	= $this->paket->nama_musik($p['id_musik']);
-			$paket[$x]['nama_kostum'] 	= $this->paket->nama_kostum($p['id_kostum']);
-			$paket[$x]['nama_catering'] = $this->paket->nama_catering($p['id_catering']);
-			$paket[$x]['nama_photo'] 	= $this->paket->nama_photo($p['id_photo']);
+		foreach ($trans as $t) {
+			$trans[$x]['nama_paket'] = $this->konfigurasi_model->get_nama_paket($t['id_paket']);
+			$trans[$x]['nama_tema'] = $this->konfigurasi_model->get_nama_tema($t['id_tema']);
+			$trans[$x]['nama_musik'] = $this->konfigurasi_model->get_nama_musik($t['id_musik']);
+			$trans[$x]['nama_makeup'] = $this->konfigurasi_model->get_nama_makeup($t['id_makeup']);
+			$trans[$x]['nama_photo'] = $this->konfigurasi_model->get_nama_photo($t['id_photo']);
+			$trans[$x]['nama_kostum'] = $this->konfigurasi_model->get_nama_kostum($t['id_kostum']);
 			$x++;
 		}
-
-		$trans     = $this->konfigurasi_model->get_trans($id_user);
 
 		$arr_trans = $this->konfigurasi_model->get_tgl_book();
 
@@ -62,11 +62,11 @@ class Dashboard extends CI_Controller {
 		}
 
 		$data = array(
-						'title'			=> 'Naufal Wedding',
+						'title'			=> 'RUMAH RIAS YASMINE',
 						'tema' 			=> $tema,
 						'tempat' 		=> $tempat,
 						'paket' 		=> $paket,
-						'catering' 		=> $catering,
+						'makeup' 		=> $makeup,
 						'musik' 		=> $musik,
 						'photo' 		=> $photo,
 						'kostum'		=> $kostum,

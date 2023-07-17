@@ -32,14 +32,7 @@ if($this->session->flashdata('sukses')){
 	    <tr>
 	      <td><?= $i++ ?></td>
 	      <td><?= $b['nama_paket'] ?></td>
-	      <td>
-	      	<li>TEMA : <strong><?= $b['nama_tema'] ?></strong></li>
-	      	<li>VENUE : <strong><?= $b['nama_tempat'] ?></strong></li>
-	      	<li>MUSIK : <strong><?= $b['nama_musik'] ?></strong></li>
-	      	<li>PHOTO : <strong><?= $b['nama_photo'] ?></strong></li>
-	      	<li>KOSTUM : <strong><?= $b['nama_kostum'] ?></strong></li>
-	      	<li>CATERING : <strong><?= $b['nama_catering'] ?></strong></li>
-	      </td>
+	      <td><?=$b['berisi']?></td>
 	      <td class="text-right"><?=number_format($b['harga'])?></td>
 	      <td><?= $b['deskripsi'] ?></td>
 	      <td>

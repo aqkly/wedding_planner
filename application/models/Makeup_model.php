@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Catering_model extends CI_Model {
+class Makeup_model extends CI_Model {
 
 	//Load Database
 	public function __construct()
@@ -14,7 +14,7 @@ class Catering_model extends CI_Model {
 	public function listing()
 	{
 		$this->db->select('*');
-		$this->db->from('catering');
+		$this->db->from('makeup');
 		$this->db->where('status', 1);
 		$this->db->order_by('id','ASC');
 		$query = $this->db->get();
@@ -23,14 +23,14 @@ class Catering_model extends CI_Model {
 
 	public function tambah($data)
 	{
-		$this->db->insert('catering', $data);
+		$this->db->insert('makeup', $data);
 	}
 
 	//Detail
 	public function detail($id)
 	{
 		$this->db->select('*');
-		$this->db->from('catering');
+		$this->db->from('makeup');
 		$this->db->where('id',$id);
 		$this->db->order_by('id');
 		$query = $this->db->get();
@@ -41,7 +41,7 @@ class Catering_model extends CI_Model {
 	public function edit($data)
 	{
 		$this->db->where('id',$data['id']);
-		$this->db->update('catering',$data);
+		$this->db->update('makeup',$data);
 	}
 
 	//Delete
@@ -49,7 +49,7 @@ class Catering_model extends CI_Model {
 	{
 		$id = $data['id'];
 
-		$c  = "UPDATE catering SET status = '0', foto = null WHERE id = '$id'";
+		$c  = "UPDATE makeup SET status = '0', foto = null WHERE id = '$id'";
 
 		$this->db->query($c);
 	}

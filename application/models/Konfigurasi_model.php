@@ -128,8 +128,8 @@ class Konfigurasi_model extends CI_Model {
 			$c = "SELECT id, nama_tema FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
 		}else if($table == 'tempat'){
 			$c = "SELECT id, nama_lokasi FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
-		}else if($table == 'catering'){
-			$c = "SELECT id, nama_catering FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
+		}else if($table == 'makeup'){
+			$c = "SELECT id, nama FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
 		}else if($table == 'musik'){
 			$c = "SELECT id, nama_musik FROM $table WHERE status = '1' GROUP BY id ORDER BY id ASC";
 		}else if($table == 'photo'){
@@ -209,14 +209,27 @@ class Konfigurasi_model extends CI_Model {
 		}
 	}
 
-	public function get_nama_catering($id)
+	public function get_total_bayar($id)
 	{
-		$c = "SELECT nama_catering FROM catering WHERE id = '$id'";
+		$c = "SELECT SUM(total_bayar) as tot FROM transaksi_detail WHERE id_transaksi = '$id'";
 
 		$query = $this->db->query($c);
 
 		if($query->num_rows() > 0){
-			return $query->result_array()[0]['nama_catering'];
+			return $query->result_array()[0]['tot'];
+		}else{
+			return null;
+		}
+	}
+
+	public function get_nama_makeup($id)
+	{
+		$c = "SELECT nama FROM makeup WHERE id = '$id'";
+
+		$query = $this->db->query($c);
+
+		if($query->num_rows() > 0){
+			return $query->result_array()[0]['nama'];
 		}else{
 			return null;
 		}
@@ -287,9 +300,40 @@ class Konfigurasi_model extends CI_Model {
 		}
 	}
 
+	public function get_no_transaksi($id)
+	{
+		$c = "SELECT no_transaksi FROM transaksi WHERE id = '$id'";
+
+		$query = $this->db->query($c);
+
+		if($query->num_rows() > 0){
+			return $query->result_array()[0]['no_transaksi'];
+		}else{
+			return null;
+		}
+	}
+
 	public function get_tgl_book()
 	{
-		$c = "SELECT tgl_booking FROM transaksi WHERE status != '4' ORDER BY tgl_booking ASC";
+		$c = "SELECT tgl_booking FROM transaksi WHERE status != '5' ORDER BY tgl_booking ASC";
+
+		$query = $this->db->query($c);
+
+		return $query->result_array();
+	}
+
+	public function list_trans_2_det($id)
+	{
+		$c = "SELECT * FROM transaksi_detail WHERE id_transaksi = '$id'";
+
+		$query = $this->db->query($c);
+
+		return $query->result_array();
+	}
+
+	public function list_trans_2_det_asli($id)
+	{
+		$c = "SELECT * FROM transaksi_detail WHERE id = '$id'";
 
 		$query = $this->db->query($c);
 

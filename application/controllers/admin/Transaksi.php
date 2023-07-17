@@ -18,13 +18,14 @@ class Transaksi extends CI_Controller {
 		$x = 0;
 		foreach ($trans as $t) {
 			$trans[$x]['nama_paket'] 	= $this->konf->get_nama_paket($t['id_paket']);
-			$trans[$x]['nama_tempat'] 	= $this->konf->get_nama_tempat($t['id_tempat']);
+			// $trans[$x]['nama_tempat'] 	= $this->konf->get_nama_tempat($t['id_tempat']);
 			$trans[$x]['nama_tema'] 	= $this->konf->get_nama_tema($t['id_tema']);
-			$trans[$x]['nama_catering'] = $this->konf->get_nama_catering($t['id_catering']);
+			$trans[$x]['nama_makeup'] 	= $this->konf->get_nama_makeup($t['id_makeup']);
 			$trans[$x]['nama_musik'] 	= $this->konf->get_nama_musik($t['id_musik']);
 			$trans[$x]['nama_photo'] 	= $this->konf->get_nama_photo($t['id_photo']);
 			$trans[$x]['nama_kostum'] 	= $this->konf->get_nama_kostum($t['id_kostum']);
 			$trans[$x]['nama_user'] 	= $this->konf->get_nama_user($t['id_user']);
+			$trans[$x]['total_bayar'] 	= $this->konf->get_total_bayar($t['id']);
 			$x++;
 		}
 
@@ -35,11 +36,47 @@ class Transaksi extends CI_Controller {
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 
+	public function detail($id)
+	{
+		$trans = $this->konf->list_trans_2_det($id);		
+
+		$data = array(	'title'		=>	'Data Transaksi ('.count($trans).')',
+						'trans'		=>	$trans,
+						'isi'		=>	'admin/trans/detail'
+				);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+
+	public function print_data($id)
+	{
+		$trans = $this->konf->list_trans_2_det($id);	
+
+		$no_transaksi = $this->konf->get_no_transaksi($id);	
+
+		$data = array(	'title'		=>	'Data Transaksi ('.count($trans).')',
+						'trans'		=>	$trans,
+						'no_transaksi'		=>	$no_transaksi,
+						'isi'		=>	'admin/trans/print'
+				);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+
+	public function print_data_det($id)
+	{
+		$trans = $this->konf->list_trans_2_det_asli($id);	
+
+		$data = array(	'title'		=>	'Data Transaksi ('.count($trans).')',
+						'trans'		=>	$trans,
+						'isi'		=>	'admin/trans/print_det'
+				);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+
 	public function batal()
 	{
 		$id = $_POST['id'];
 
-		$query = $this->db->query("UPDATE transaksi SET status = '4' WHERE id = '$id'");
+		$query = $this->db->query("UPDATE transaksi SET status = '5' WHERE id = '$id'");
 
 		if($query){
 			echo json_encode(['result' => 'sukses']);
@@ -85,7 +122,25 @@ class Transaksi extends CI_Controller {
 			$total_bayar 	= $i->post('total_bayar');
 			$id_admin   	= $_SESSION['id_user'];
 
-			$this->db->query("UPDATE transaksi SET tgl_bayar = '$tgl_bayar', total_bayar = '$total_bayar', status = '3', bukti_bayar = '$foto', id_admin = '$id_admin' WHERE id = '$id'");
+			$total_harga  	= $this->konf->get_harga($id);
+			$history_bayar  = $this->konf->get_total_bayar($id);
+
+			$tot_bayar_asli = ($history_bayar + $total_bayar);
+
+			if( $tot_bayar_asli == $total_harga ){
+				$status = '4';
+			}else if(($history_bayar + $total_bayar) > $total_harga){
+				$this->session->set_flashdata('gagal', 'Total bayar Tidak boleh melebihi Total harga');
+				redirect(base_url('admin/transaksi'),'refresh');
+				die;
+			}else{
+				$status = '3';
+			}
+
+			$this->db->query("INSERT INTO transaksi_detail (id_transaksi, tgl_bayar, total_bayar, bukti_bayar) VALUES ('$id', '$tgl_bayar', '$total_bayar', '$foto')");
+
+			$this->db->query("UPDATE transaksi SET status = '$status' WHERE id = '$id'");
+
 			$this->session->set_flashdata('sukses', 'Data Telah Ditambah');
 			redirect(base_url('admin/transaksi'),'refresh');
 		}

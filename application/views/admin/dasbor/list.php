@@ -31,16 +31,31 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-map-marker"></i></span>
+            <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">VENUE</span>
-              <span class="info-box-number"><?= count($tempat) ?></span>
+              <span class="info-box-text">TRANSAKSI</span>
+              <span class="info-box-number"><?= count($trans) ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
         </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-map-marker"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">VENUE</span>
+              <span class="info-box-number"><?= count($tempat) ?></span>
+            </div> -->
+            <!-- /.info-box-content -->
+          <!-- </div> -->
+          <!-- /.info-box -->
+        <!-- </div> -->
         <!-- /.col -->
 
         <!-- fix for small devices only -->
@@ -67,11 +82,11 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-cutlery"></i></span>
+            <span class="info-box-icon bg-aqua"><i class="fa fa-paint-brush"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">CATERING </span>
-              <span class="info-box-number"><?= count($catering) ?><small> CATERING</small></span>
+              <span class="info-box-text">MAKEUP </span>
+              <span class="info-box-number"><?= count($makeup) ?><small> MAKEUP</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -125,22 +140,3 @@
 
       </div>
       <!-- /.row -->
-
-      <div class="row">
-
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">TRANSAKSI</span>
-              <span class="info-box-number"><?= count($trans) ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-      </div>

@@ -39,6 +39,12 @@
 <script src="<?= base_url() ?>assets/admin/datatable/responsive.bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/datatable/responsive.bootstrap4.js"></script>
 
+ <script
+      src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>
+
 <script src="<?= base_url() ?>assets/vx/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
 
 <script src="<?= base_url() ?>assets/admin/datatable/jszip.min.js"></script>
@@ -53,6 +59,8 @@
 <script>
 
 $(document).ready(function(){
+
+    $('#berisi_paket').tinymce({ height: 500, /* other settings... */ });
 
     $("#dasbor1").DataTable({
           lengthChange: true,

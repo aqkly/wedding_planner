@@ -40,7 +40,7 @@ class Konfigurasi extends CI_Controller {
 							'telepon'		=>	$i->post('telepon'),
 							'alamat'		=>	$i->post('alamat'),
 							'website'		=>	$i->post('website'),
-							'deskripsi'		=>	$i->post('deskripsi'),
+							'no_rek'		=>	$i->post('no_rek'),
 							'keywords'		=>	$i->post('keywords'),
 							'metatext'		=>	$i->post('metatext'),
 							'map'			=>	$i->post('map'),

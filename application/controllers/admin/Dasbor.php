@@ -10,7 +10,7 @@ class Dasbor extends CI_Controller {
 		$this->load->model('tema_model', 'tema');
 		$this->load->model('musik_model', 'musik');
 		$this->load->model('tempat_model', 'tempat');
-		$this->load->model('catering_model', 'catering');
+		$this->load->model('makeup_model', 'makeup');
 		$this->load->model('photo_model', 'photo');
 		$this->load->model('kostum_model', 'kostum');
 		$this->load->model('paket_model', 'paket');
@@ -22,7 +22,7 @@ class Dasbor extends CI_Controller {
 	{
 		$tema 		= $this->tema->listing();
 		$musik 		= $this->musik->listing();
-		$catering 	= $this->catering->listing();
+		$makeup 	= $this->makeup->listing();
 		$tempat 	= $this->tempat->listing();
 		$photo 		= $this->photo->listing();
 		$kostum 	= $this->kostum->listing();
@@ -33,7 +33,7 @@ class Dasbor extends CI_Controller {
 		$data = array(	'title'		=> 'Halaman Dasbor Administrator',
 						'tema'		=> $tema,
 						'musik'		=> $musik,
-						'catering'	=> $catering,
+						'makeup'	=> $makeup,
 						'tempat'	=> $tempat,
 						'photo'		=> $photo,
 						'kostum'	=> $kostum,
