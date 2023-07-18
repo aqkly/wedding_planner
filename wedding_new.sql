@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 02/07/2023 20:29:31
+ Date: 18/07/2023 19:25:46
 */
 
 SET NAMES utf8mb4;
@@ -34,29 +34,7 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin@gmail.com', 'admin1', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Admin', '2023-07-02 15:09:56');
-
--- ----------------------------
--- Table structure for catering
--- ----------------------------
-DROP TABLE IF EXISTS `catering`;
-CREATE TABLE `catering`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nama_catering` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `harga` decimal(16, 2) NULL DEFAULT NULL,
-  `deskripsi` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of catering
--- ----------------------------
-INSERT INTO `catering` VALUES (1, 'Aneka Tumis', 2000000.00, ' pada olahan ini, harus ada sayurannya. Kalau tidak ada sayurnya, rasanya kurang lengkap. Kemudian tambahan bahan makanan-makanan lain semisal tahu, tempe, atau seafood bisa membuat rasanya makin enak.', 'tumis.jpg', 1);
-INSERT INTO `catering` VALUES (2, 'Aneka Olahan Ayam', 5000000.00, 'Olahan ayam tentu banyak sekali. Dan dari banyaknya olahan itu, kira-kira mana yang akan kamu pilih.', 'ayam.jpg', 1);
-INSERT INTO `catering` VALUES (3, 'Aneka Olahan Ikan', 4000000.00, 'Mungkin yang terbayang dari benak kalian adalah, jika mengkonsumsi ikan di acara pernikahan, pasti rasanya ribet. Sebab kita harus memisahkan duri dan ikan.\r\n\r\nTapi sebenarnya tergantung olahan dari ikan itu sendiri serta jenisnya.', 'ikan.jpg', 1);
-INSERT INTO `catering` VALUES (4, 'TES2', 20000.00, 'TES2', NULL, 0);
+INSERT INTO `admin` VALUES (1, 'admin@gmail.com', 'admin1', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Admin', '2023-07-17 08:14:58');
 
 -- ----------------------------
 -- Table structure for konfigurasi
@@ -71,7 +49,7 @@ CREATE TABLE `konfigurasi`  (
   `telepon` varchar(24) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `alamat` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `website` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `deskripsi` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `no_rek` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `keywords` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `metatext` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `map` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
@@ -87,7 +65,7 @@ CREATE TABLE `konfigurasi`  (
 -- ----------------------------
 -- Records of konfigurasi
 -- ----------------------------
-INSERT INTO `konfigurasi` VALUES (2, 1, 'WEDDING', 'Wedding', 'admin@gmail.com', '087735282147', 'Jl. Gegerkalong Hilir No.117, Sukarasa, Kec. Sukasari, Kota Bandung, Jawa Barat 40153', '', '', '', '', '', 'logo.png', 'logo.png', 'https://facebook.com/', 'https://instagram.com/', '2023-06-30 15:11:14');
+INSERT INTO `konfigurasi` VALUES (2, 1, 'RUMAH RIAS YASMINE', 'RUMAH RIAS YASMINE', 'admin@gmail.com', '087735282147', 'Jl. Gegerkalong Hilir No.117, Sukarasa, Kec. Sukasari, Kota Bandung, Jawa Barat 40153', '', '111.0493.4930 (MANDIRI)', '', '', '', 'logo.png', 'logo.png', 'https://facebook.com/', 'https://instagram.com/', '2023-07-16 18:18:41');
 
 -- ----------------------------
 -- Table structure for kostum
@@ -109,6 +87,29 @@ CREATE TABLE `kostum`  (
 INSERT INTO `kostum` VALUES (1, 'Baju Adat Sunda', 1000000.00, NULL, 'sunda.jpg', 1);
 INSERT INTO `kostum` VALUES (2, 'Baju Adat Jawa', 2000000.00, NULL, 'jawa.jpg', 1);
 INSERT INTO `kostum` VALUES (3, 'TES2', 600000.00, 'TESS2', NULL, 0);
+
+-- ----------------------------
+-- Table structure for makeup
+-- ----------------------------
+DROP TABLE IF EXISTS `makeup`;
+CREATE TABLE `makeup`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `harga` decimal(16, 2) NULL DEFAULT NULL,
+  `deskripsi` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of makeup
+-- ----------------------------
+INSERT INTO `makeup` VALUES (1, 'Look Sunda', 1000000.00, 'Makeup sunda', 'ini_makeup.jpg', 1);
+INSERT INTO `makeup` VALUES (2, 'MAKE UP + HIJAB DO CPW', 5000000.00, 'tes', NULL, 0);
+INSERT INTO `makeup` VALUES (3, 'Aneka Olahan Ikan', 4000000.00, 'Mungkin yang terbayang dari benak kalian adalah, jika mengkonsumsi ikan di acara pernikahan, pasti rasanya ribet. Sebab kita harus memisahkan duri dan ikan.\r\n\r\nTapi sebenarnya tergantung olahan dari ikan itu sendiri serta jenisnya.', NULL, 0);
+INSERT INTO `makeup` VALUES (4, 'TES2', 20000.00, 'TES2', NULL, 0);
+INSERT INTO `makeup` VALUES (5, 'Look Jawa', 1200000.00, 'Makeup Jawa', 'makeup.jpg', 1);
 
 -- ----------------------------
 -- Table structure for musik
@@ -139,25 +140,27 @@ DROP TABLE IF EXISTS `paket`;
 CREATE TABLE `paket`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `nama_paket` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `id_tema` int NULL DEFAULT NULL,
-  `id_tempat` int NULL DEFAULT NULL,
-  `id_musik` int NULL DEFAULT NULL,
-  `id_photo` int NULL DEFAULT NULL,
-  `id_catering` int NULL DEFAULT NULL,
-  `id_kostum` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `berisi` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `harga` decimal(16, 2) NULL DEFAULT NULL,
   `deskripsi` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `status` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of paket
 -- ----------------------------
-INSERT INTO `paket` VALUES (1, 'PAKET 1', 1, 1, 1, 1, 1, '1', 20000000.00, 'TES', 1);
-INSERT INTO `paket` VALUES (2, 'PAKET 2', 2, 2, 2, 2, 2, '2', 30000000.00, 'TES', 1);
-INSERT INTO `paket` VALUES (3, 'PAKET 3', 3, NULL, 3, 3, 3, NULL, 40000000.00, 'TES', 1);
-INSERT INTO `paket` VALUES (4, 'Paket 4', 3, 1, 3, 3, 2, '2', 40000000.00, 'OK', 1);
+INSERT INTO `paket` VALUES (1, 'PAKET 1', NULL, 20000000.00, 'TES', 0);
+INSERT INTO `paket` VALUES (2, 'PAKET 2', NULL, 30000000.00, 'TES', 0);
+INSERT INTO `paket` VALUES (3, 'PAKET 3', NULL, 40000000.00, 'TES', 0);
+INSERT INTO `paket` VALUES (4, 'Paket 4', NULL, 40000000.00, 'OK', 0);
+INSERT INTO `paket` VALUES (5, 'PACKAGE 1', '<p>MAKE UP + HIJAB<br>DO CPW<br>1 SET KOSTUM<br>AKAD<br>1 SET MELATI FRESH<br>1 SET DEKORASI<br>AKAD<br>FRESH FLOWERS<br>ALAT PERASMAN<br>(100 SET PIRING DAN<br>GARFU)<br>1 ALBUM FOTO</p>', 5000000.00, 'Paket 1', 1);
+INSERT INTO `paket` VALUES (6, 'PACKAGE 2', '<p>MAKE UP + HIJAB DO<br>CPW<br>1 SET KOSTUM AKAD<br>CWP &amp; CPP<br>1 SET MELATI FRESH<br>HENNA + KUKU<br>SOFTLENS<br>1 SET KOSTUM RESEPSI<br>2 MAKE UP + HIJAB DO &amp;<br>2 STYLE COSTUM IBU<br>CPW &amp; CPP<br>2 BESKAP BAPA CPW<br>DAN CPP<br>2 MAKE UP + COSTUM<br>PERASMAN<br>4 MAKEUP + COSTUM<br>PAGAR AYU<br>2 BESKAP AGAR BAGUS</p>', 6000000.00, 'Paket 2', 1);
+INSERT INTO `paket` VALUES (7, 'PACKAGE 3', '<p>MAKE UP + HIJAB DO<br>CPW<br>1 SET KOSTUM AKAD<br>CWP &amp; CPP<br>1 SET MELATI FRESH<br>HENNA + KUKU<br>SOFTLENS<br>1 SET KOSTUM RESEPSI<br>2 MAKE UP + HIJAB DO &amp;<br>2 STYLE COSTUM IBU<br>CPW &amp; CPP<br>2 BESKAP BAPA CPW DAN<br>CPP<br>2 MAKE UP + COSTUM<br>PERASMAN<br>4 MAKEUP + COSTUM<br>PAGAR AYU<br>2 BESKAP AGAR BAGUS<br>DEKORASI PELAMINAN<br>BUNGA PLASTIK<br>FOTO &amp; VIDEO<br>100 PCS KURSI + SARUNG<br>1 SET MEJA PERASMAN<br>100 SET PIRING, SENDOK<br>&amp; GARFU<br>1 SET PEMANAS<br>PANGGUNG HIBURAN +<br>SOUND<br>TENDA<br>1 SET MEJA TAMU<br>SOUND SYSTEM</p>', 12000000.00, 'Paket 3', 1);
+INSERT INTO `paket` VALUES (8, 'PACKAGE 4', '<p>MAKE UP + HIJAB DO CPW (AKAD &amp;<br>RESEPSI)<br>1 SET COSTUM AKAD CPW &amp; CPP<br>2 SET COSTUM RESEPSI CPW &amp; CPP<br>MAKE UP &amp; COSTUM IBU CPW &amp;<br>CPP<br>2 BESKAP BAPAK CPW &amp; CPP<br>4 SET BAJU MAKEUP HIJAB DO<br>PAGAR AYU<br>4 SET MAKEUP HIJAB DO<br>PARASMAN<br>2 BESKAP PAGAR BAGUS<br>1 SET MELATI FRESH<br>HENNA + KUKU<br>SOFTLENS<br>DEKORASI PELAMINAN BUNGA<br>ASLI<br>GALERI<br>1 LORONG LENGKUNG<br>2 STANDING JALAN<br>TENDA 100 M<br>PANGGUNG HIBURAN + SOUND<br>100 PCS KURSI PLASTIK &amp; SARUNG<br>1 SET MEJA PERASMAN<br>1 SET PEMANAS<br>100 PCS PIRING, SENDOK &amp; GARFU<br>2 SET MEJA POJOKAN<br>1 SET MEJA TAMU<br>FOTO &amp; VIDEO<br>MUSIK<br>(ORGAN/QOSIDAH/MARAWIS)<br>1 JANUR/BLOWER</p>', 17000000.00, 'Paket 4', 1);
+INSERT INTO `paket` VALUES (9, 'PACKAGE 5', '<p>MAKE UP + HIJAB DO CPW (AKAD &amp;<br>RESEPSI)<br>1 SET COSTUM AKAD CPW &amp; CPP<br>2 SET COSTUM RESEPSI CPW &amp; CPP<br>MAKE UP &amp; COSTUM IBU CPW &amp;<br>CPP<br>MAKE UP &amp; FOTO PRE-WEDDING<br>2 BESKAP BAPAK CPW &amp; CPP<br>4 SET BAJU MAKEUP HIJAB DO<br>PAGAR AYU<br>4 SET MAKEUP HIJAB DO<br>PARASMAN<br>2 BESKAP PAGAR BAGUS<br>1 SET MELATI FRESH<br>HENNA + KUKU<br>SOFTLENS<br>DEKORASI PELAMINAN BUNGA<br>ASLI<br>PHOTOBOOTH<br>1 LORONG LENGKUNG<br>2 STANDING JALAN<br>TENDA 100 M<br>PANGGUNG HIBURAN + SOUND<br>100 PCS KURSI PLASTIK &amp; SARUNG<br>1 SET MEJA PERASMAN<br>1 SET PEMANAS ROLL TOP<br>150 PCS PIRING, SENDOK &amp; GARFU<br>3 SET MEJA POJOKAN<br>1 SET MEJA TAMU<br>FOTO &amp; VIDEO<br>MC AKAD NIKAH (SUNGKEMAN,<br>SAWERAN, PATARIK BAKAKAK)<br>MUSIK<br>(ORGAN/QOSIDAH/MARAWIS)<br>1 JANUR/BLOWER<br>HAND BOUQUET FRESH<br>2 SET MEJA VIP</p>', 20000000.00, 'Paket 5', 1);
+INSERT INTO `paket` VALUES (10, 'PACKAGE 6', '<p>MAKE UP + HIJAB DO CPW (AKAD &amp;<br>RESEPSI)<br>1 SET COSTUM AKAD CPW &amp; CPP<br>2 SET COSTUM RESEPSI CPW &amp; CPP<br>MAKE UP &amp; COSTUM IBU CPW &amp; CPP<br>MAKE UP &amp; FOTO PRE-WEDDING<br>2 BESKAP BAPAK CPW &amp; CPP<br>4 SET BAJU MAKEUP HIJAB DO PAGAR AYU<br>4 SET MAKEUP HIJAB DO PARASMAN<br>2 BESKAP PAGAR BAGUS<br>1 SET MELATI FRESH<br>HENNA + KUKU<br>SOFTLENS<br>DEKORASI PELAMINAN BUNGA ASLI<br>PHOTOBOOTH<br>2 LORONG LENGKUNG<br>2 STANDING JALAN<br>TENDA 100 M<br>PANGGUNG HIBURAN + SOUND<br>100 PCS KURSI PLASTIK &amp; SARUNG<br>1 SET MEJA PERASMAN<br>1 SET PEMANAS ROLL TOP<br>150 PCS PIRING, SENDOK &amp; GARFU<br>3 SET MEJA POJOKAN<br>1 SET MEJA TAMU<br>FOTO &amp; VIDEO<br>MC AKAD NIKAH (SUNGKEMAN,<br>SAWERAN, PATARIK BAKAKAK)<br>MUSIK (SEMI BAND/ POP/DANGDUT)<br>1 JANUR/BLOWER<br>HAND BOUQUET FRESH<br>2 SET MEJA VIP<br>SIRAMAN (DEKORASI, FOTO)<br>MC SIRAMAN / JURU KAWIH &amp; KECAPI<br>LIVE<br>1 SET COSTUM MELATI FRESH SIRAMAN<br>UPACARA ADAT (KASET AUDIO)</p>', 25000000.00, 'Paket 6', 1);
+INSERT INTO `paket` VALUES (11, 'PACKAGE 7', '<p>MAKE UP + HIJAB DO CPW (AKAD &amp; RESEPSI)<br>1 SET COSTUM AKAD CPW &amp; CPP<br>2 SET COSTUM RESEPSI CPW &amp; CPP<br>MAKE UP &amp; COSTUM IBU CPW &amp; CPP<br>MAKE UP &amp; FOTO PRE-WEDDING<br>2 BESKAP BAPAK CPW &amp; CPP<br>4 SET BAJU MAKEUP HIJAB DO PAGAR AYU<br>4 SET MAKEUP HIJAB DO PARASMAN<br>2 BESKAP PAGAR BAGUS<br>1 SET MELATI FRESH<br>HENNA + KUKU<br>SOFTLENS<br>DEKORASI PELAMINAN BUNGA ASLI<br>PHOTOBOOTH<br>2 LORONG LENGKUNG<br>2 STANDING JALAN<br>TENDA 100 M<br>PANGGUNG HIBURAN + SOUND<br>100 PCS KURSI PLASTIK &amp; SARUNG<br>1 SET MEJA PERASMAN<br>1 SET PEMANAS ROLL TOP<br>200 PCS PIRING, SENDOK &amp; GARFU<br>3 SET MEJA POJOKAN<br>1 SET MEJA TAMU<br>FOTO &amp; VIDEO<br>MC AKAD NIKAH (SUNGKEMAN, SAWERAN,<br>PATARIK BAKAKAK)<br>MUSIK (SEMI BAND/POP/DANGDUT)<br>1 JANUR/BLOWER<br>HAND BOUQUET FRESH<br>2 SET MEJA VIP<br>SIRAMAN (DEKORASI, FOTO)<br>MC SIRAMAN / JURU KAWIH &amp; KECAPI LIVE<br>1 SET COSTUM MELATI FRESH SIRAMAN<br>UPACARA ADAT (KASET AUDIO)<br>WO ( 3 CREW)<br>2 BUAH BUKU TAMU</p>', 30000000.00, 'Paket 7', 1);
 
 -- ----------------------------
 -- Table structure for photo
@@ -165,20 +168,22 @@ INSERT INTO `paket` VALUES (4, 'Paket 4', 3, 1, 3, 3, 2, '2', 40000000.00, 'OK',
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo`  (
   `id` int NOT NULL AUTO_INCREMENT,
+  `nama_fotographer` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nama` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `harga` decimal(16, 2) NULL DEFAULT NULL,
   `deskripsi` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of photo
 -- ----------------------------
-INSERT INTO `photo` VALUES (1, 'Pre Wedding', 1500000.00, 'Sebelum nikah', 'pre_wedding.jpg', 1);
-INSERT INTO `photo` VALUES (2, 'Wedding', 2000000.00, 'Sesudah nikah', 'wedding.jpg', 1);
-INSERT INTO `photo` VALUES (3, 'Pre Wedding + Wedding', 3000000.00, 'Paketan', 'wedding.jpg', 1);
+INSERT INTO `photo` VALUES (1, NULL, 'Pre Wedding', 1500000.00, 'Sebelum nikah', NULL, 0);
+INSERT INTO `photo` VALUES (2, 'NAUFAL', 'FOTO', 1500000.00, 'Foto Saja', 'wedding.jpg', 1);
+INSERT INTO `photo` VALUES (3, 'NAUFAL', 'FOTO + VIDEO (CIMETIC)', 3000000.00, 'Foto + Video', 'wedding.jpg', 1);
+INSERT INTO `photo` VALUES (4, 'ADI', 'FOTO + VIDEO (DOKUMENTER)', 5000000.00, 'Foto + Video', 'photo.jpg', 1);
 
 -- ----------------------------
 -- Table structure for tema
@@ -233,30 +238,48 @@ CREATE TABLE `transaksi`  (
   `date` datetime NULL DEFAULT NULL,
   `no_transaksi` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nama_pemesan` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `alamat` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `id_admin` int NULL DEFAULT NULL,
   `id_user` int NULL DEFAULT NULL,
   `tgl_booking` date NULL DEFAULT NULL,
   `jenis_booking` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `id_tempat` int NULL DEFAULT NULL,
   `id_tema` int NULL DEFAULT NULL,
   `id_musik` int NULL DEFAULT NULL,
-  `id_catering` int NULL DEFAULT NULL,
+  `id_makeup` int NULL DEFAULT NULL,
   `id_photo` int NULL DEFAULT NULL,
   `id_kostum` int NULL DEFAULT NULL,
   `id_paket` int NULL DEFAULT NULL,
   `total_harga` decimal(16, 2) NULL DEFAULT NULL,
   `jth_tempo_bayar` datetime NULL DEFAULT NULL,
-  `tgl_bayar` datetime NULL DEFAULT NULL,
-  `total_bayar` decimal(16, 2) NULL DEFAULT NULL,
-  `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = baru, 2 = menunggu bayar, 3 = bayar, 4 = batal',
-  `bukti_bayar` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = baru, 2 = menunggu bayar, 3 = bayar sebagian, 4 = bayar full, 5 = batal',
+  `ket` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of transaksi
 -- ----------------------------
-INSERT INTO `transaksi` VALUES (1, '2023-07-02 06:36:33', '202307-001', 'Aqkly hermawan', NULL, 1, '2023-07-02', 'paketan', 0, 0, 0, 0, 0, 0, 1, 20000000.00, '2023-07-03 06:36:33', NULL, NULL, 2, NULL);
+INSERT INTO `transaksi` VALUES (1, '2023-07-16 13:38:14', '202307-001', 'Aqkly hermawan', 'TES', NULL, 1, '2023-07-16', 'paketan', 0, 0, 0, 0, 0, 6, 6000000.00, '2023-07-17 13:38:14', 4, 'TES');
+INSERT INTO `transaksi` VALUES (2, '2023-07-16 13:52:52', '202307-002', 'ISMA', 'TES alamat', NULL, 1, '2023-07-17', 'custom', 1, 1, 1, 2, 0, 0, 17500000.00, '2023-07-17 13:52:52', 2, 'TES');
+
+-- ----------------------------
+-- Table structure for transaksi_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `transaksi_detail`;
+CREATE TABLE `transaksi_detail`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_transaksi` int NULL DEFAULT NULL,
+  `tgl_bayar` date NULL DEFAULT NULL,
+  `total_bayar` decimal(16, 2) NULL DEFAULT NULL,
+  `bukti_bayar` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of transaksi_detail
+-- ----------------------------
+INSERT INTO `transaksi_detail` VALUES (3, 1, '2023-07-16', 3000000.00, 'dash1.PNG');
+INSERT INTO `transaksi_detail` VALUES (4, 1, '2023-07-16', 3000000.00, 'ap3.PNG');
 
 -- ----------------------------
 -- Table structure for user
@@ -271,11 +294,12 @@ CREATE TABLE `user`  (
   `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'DENI', 'deni@deni.com', '987434745', 'Kp. ada ada', 'deni', '123456');
+INSERT INTO `user` VALUES (5, 'Aqkly hermawan', 'aqklyhermawan@gmail.com', '+628994501518', 'kp. Empang sari rt 12/04 plered', 'aqlyplered', '12345678');
 
 SET FOREIGN_KEY_CHECKS = 1;
