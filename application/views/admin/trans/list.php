@@ -66,10 +66,6 @@ if($this->session->flashdata('gagal')){
 	      <td style="white-space:nowrap; ">
           <a href="<?=base_url('admin/transaksi/detail/'.$b['id'])?>" class="btn btn-info btn-xs">Detail</a>
 
-	      	<?php if($b['total_bayar'] < $b['total_harga']){ ?>
-	      	<button type="button" onclick="konf_trans('<?=$b['id']?>')" class="btn btn-success btn-xs">Konf Bayar</button>
-	      	<?php } ?>
-
 	      	<?php if($b['status'] != '5' && $b['status'] != '3' && $b['status'] != '4'){ ?>
 	      		<button type="button" onclick="batal_trans('<?=$b['id']?>')" class="btn btn-danger btn-xs">Batalkan</button>
 	      	<?php } ?>

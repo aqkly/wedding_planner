@@ -19,11 +19,24 @@
   	<link href="<?=base_url()?>assets/user/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vx/app-assets/vendors/css/pickers/pickadate/pickadate.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vx/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
-
     <title><?=$title?></title>
 </head>
 
 <body>
+    <?php
+    //Notifikasi
+    if($this->session->flashdata('sukses')){
+    echo '<div class="alert alert-success">';
+    echo $this->session->flashdata('sukses');
+    echo '</div>';
+    }
+
+    if($this->session->flashdata('gagal')){
+    echo '<div class="alert alert-warning">';
+    echo $this->session->flashdata('gagal');
+    echo '</div>';
+    }
+    ?>
     <header class="showcase">
         <div class="showcase-top">
             <?php if(empty($_SESSION['uid'])){ ?>
@@ -82,9 +95,7 @@
 	                        <p class="text-md">Musik</p>
                     	</button>
                 	</div>
-                </div>
 
-                <div class="tabs-tes">
                     <div>
                         <button type="button" onclick="modal_photo()">
                             <img src="<?=base_url('assets/user/img/photo.jpg')?>" style="width: 230px !important;height: 170px !important;" />
@@ -106,12 +117,21 @@
             <div id="tab-2-content" class="tab-content-item">
                 <div class="tab-2-content-bottom">
                 	<?php foreach ($paket as $p) { ?>
-                    <div>
-                        <h4><?=$p['nama_paket']?></h4>
-                        <div style="white-space: nowrap"><?=$p['berisi']?></div>
-                        <a href="#" class="btn"><?=number_format($p['harga'])?></a>
-                    </div>
-                <?php } ?>
+                        <div>
+                            <div class="slider">
+                                <figure>
+                                    <?php foreach($p['gambar'] as $q){ ?>
+                                        <div class="slide">
+                                            <img style="width: 300px !important;height: 200px !important;"   src="<?=base_url('assets/upload/image/'.$q['img'])?>" />
+                                        </div>
+                                    <?php } ?>
+                                </figure>
+                            </div>
+                            <h4 style="color:red !important"><?=$p['nama_paket']?></h4>
+                            <div class="shrinkable"><?=$p['berisi']?></div>
+                            <a href="#" class="btn"><?=number_format($p['harga'])?></a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -209,7 +229,6 @@
                                     <th>BOOKING ORDER</th>
                                     <th>TOTAL HARGA</th>
                                     <th>NO REKENING</th>
-                                    <th>KETERANGAN</th>
                                     <th>STATUS</th>
                                 </tr>
                             </thead>
@@ -256,7 +275,6 @@
                                         </td>
                                         <td><?=number_format($t['total_harga'])?></td>
                                         <td><?=$konfigurasi->no_rek?></td>
-                                        <td><?=$t['ket']?></td>
                                         <td>
                                             <?php if($t['status'] == '1'){ ?>
                                                 <div>Baru</div>
@@ -268,6 +286,10 @@
                                                 <div>Sudah Full Bayar</div>
                                             <?php }else if($t['status'] == '5'){ ?>
                                                 <div>Batal</div>
+                                            <?php } ?>
+
+                                            <?php if($t['total_bayar'] < $t['total_harga']){ ?>
+                                                <button type="button" onclick="konf_trans('<?=$t['id']?>')" class="btn btn-success btn-xs">Konf Bayar</button>
                                             <?php } ?>
                                         </td>
 
@@ -582,6 +604,52 @@
 	  </div>
 	</div>
 
+    <div class="modal fade" id="trans_mod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-centered modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">KONFIRMASI PEMBAYARAN</h5>
+            </button>
+        </div>
+        <?php
+        $attribut = 'class="alert alert-info"';
+        echo form_open_multipart(base_url('admin/transaksi/konf_trans'),$attribut);
+        ?>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-3">TGL BAYAR</div>
+                <div class="col-sm-6">
+                    <input type="hidden" name="id" id="trans_id">
+                    <input type="date" name="tgl_bayar" class="form-control form-control-sm" value="<?=date('Y-m-d')?>" required>
+                </div>
+            </div>
+            <br>
+            <div class="row mt-1">
+                <div class="col-sm-3">TOTAL BAYAR</div>
+                <div class="col-sm-6">
+                    <input type="number" step="any" name="total_bayar" id="trans_harga" class="form-control form-control-sm" value="0" required>
+                </div>
+            </div>
+            <br>
+            <div class="row mt-1">
+                <div class="col-sm-3">BUKTI BAYAR</div>
+                <div class="col-sm-6">
+                    <input type="file" name="gambar" required class="form-control form-control-sm" required>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-success btn-sm">Simpan</button>
+            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Tutup</button>
+        </div>
+        <?php
+        //form close
+        echo form_close();
+        ?>
+        </div>
+    </div>
+    </div>
+
     <script src="<?=base_url('assets/user/js/main.js')?>"></script>
     <script src="<?=base_url()?>assets/user/lib/jquery/jquery.min.js"></script>
   	<script src="<?=base_url()?>assets/user/lib/jquery/jquery-migrate.min.js"></script>
@@ -865,6 +933,48 @@
         const z = n  => ('0' + n).slice(-2);
         return d.getFullYear() + '-' +  z(d.getMonth()+1) + '-' + 
         z(d.getDate()); 
+    }
+
+    function showMore(id){
+        document.getElementById(id+'Overflow').className='';
+        document.getElementById(id+'MoreLink').className='hidden';
+        document.getElementById(id+'LessLink').className='';
+    }
+
+    function showLess(id){
+        document.getElementById(id+'Overflow').className='hidden';
+        document.getElementById(id+'MoreLink').className='';
+        document.getElementById(id+'LessLink').className='hidden';
+    }
+
+    var len = 100;
+    var shrinkables = document.getElementsByClassName('shrinkable');
+    if (shrinkables.length > 0) {
+        for (var i = 0; i < shrinkables.length; i++){
+            var fullText = shrinkables[i].innerHTML;
+            if(fullText.length > len){
+                var trunc = fullText.substring(0, len).replace(/\w+$/, '');
+                var remainder = "";
+                var id = shrinkables[i].id;
+                remainder = fullText.substring(len, fullText.length);
+                shrinkables[i].innerHTML = '<span>' + trunc + '<span class="hidden" id="' + id + 'Overflow">'+ remainder +'</span></span>&nbsp;<a id="' + id + 'MoreLink" href="#!" onclick="showMore(\''+ id + '\');">More</a><a class="hidden" href="#!" id="' + id + 'LessLink" onclick="showLess(\''+ id + '\');">Less</a>';
+            }
+        }
+    }
+
+    function konf_trans(id)
+    {
+    $.ajax({
+        type: "POST",
+        url: "<?= base_url('admin/transaksi/get_harga') ?>",
+        data: "id="+id,
+        dataType: "JSON",
+        success: function (data) {
+        $("#trans_harga").val(data);
+        $("#trans_id").val(id);
+        $("#trans_mod").modal('show');
+        }
+    });
     }
  		
  	</script>

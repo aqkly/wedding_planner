@@ -141,8 +141,8 @@ class Transaksi extends CI_Controller {
 
 			$this->db->query("UPDATE transaksi SET status = '$status' WHERE id = '$id'");
 
-			$this->session->set_flashdata('sukses', 'Data Telah Ditambah');
-			redirect(base_url('admin/transaksi'),'refresh');
+			$this->session->set_flashdata('sukses', 'Konfirmasi bayar sukses');
+			redirect(base_url('dashboard'),'refresh');
 		}
 	}
 

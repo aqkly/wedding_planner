@@ -135,6 +135,13 @@ function konf_trans(id)
     }
   });
 }
+
+function upload_paket(id)
+{
+  $("#up_paket_id").val(id);
+  $("#mod_up_paket").modal('show');
+}
+
 </script>
 </body>
 </html

@@ -3,15 +3,15 @@
 
  Source Server         : local_asli
  Source Server Type    : MySQL
- Source Server Version : 100138
+ Source Server Version : 100427
  Source Host           : localhost:3306
  Source Schema         : wedding_new
 
  Target Server Type    : MySQL
- Target Server Version : 100138
+ Target Server Version : 100427
  File Encoding         : 65001
 
- Date: 18/07/2023 19:25:46
+ Date: 23/09/2023 08:14:38
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,36 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin@gmail.com', 'admin1', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Admin', '2023-07-17 08:14:58');
+INSERT INTO `admin` VALUES (1, 'admin@gmail.com', 'admin1', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Admin', '2023-09-23 02:57:29');
+
+-- ----------------------------
+-- Table structure for image_paket
+-- ----------------------------
+DROP TABLE IF EXISTS `image_paket`;
+CREATE TABLE `image_paket`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_paket` int NULL DEFAULT NULL,
+  `img` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of image_paket
+-- ----------------------------
+INSERT INTO `image_paket` VALUES (7, 8, 'paket1a.jpg');
+INSERT INTO `image_paket` VALUES (8, 8, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (9, 9, 'paket1a.jpg');
+INSERT INTO `image_paket` VALUES (10, 9, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (11, 10, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (12, 10, 'paket1a.jpg');
+INSERT INTO `image_paket` VALUES (13, 11, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (14, 11, 'paket1a.jpg');
+INSERT INTO `image_paket` VALUES (15, 5, 'paket1a.jpg');
+INSERT INTO `image_paket` VALUES (16, 5, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (17, 6, 'paket1a.jpg');
+INSERT INTO `image_paket` VALUES (18, 6, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (20, 7, 'paket1b.jpg');
+INSERT INTO `image_paket` VALUES (21, 7, 'paket1a.jpg');
 
 -- ----------------------------
 -- Table structure for konfigurasi
@@ -57,7 +86,7 @@ CREATE TABLE `konfigurasi`  (
   `icon` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `facebook` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `instagram` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_konfigurasi`) USING BTREE,
   INDEX `id_user`(`id_user`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
@@ -79,7 +108,7 @@ CREATE TABLE `kostum`  (
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of kostum
@@ -100,7 +129,7 @@ CREATE TABLE `makeup`  (
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of makeup
@@ -123,7 +152,7 @@ CREATE TABLE `musik`  (
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = aktif, 0 = non-aktif',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of musik
@@ -145,7 +174,7 @@ CREATE TABLE `paket`  (
   `deskripsi` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `status` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of paket
@@ -175,7 +204,7 @@ CREATE TABLE `photo`  (
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of photo
@@ -197,7 +226,7 @@ CREATE TABLE `tema`  (
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = AKTIF, 0 atau null = NON AKTIF',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tema
@@ -220,7 +249,7 @@ CREATE TABLE `tempat`  (
   `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = aktif, 2 = non',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tempat
@@ -254,13 +283,13 @@ CREATE TABLE `transaksi`  (
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '1 = baru, 2 = menunggu bayar, 3 = bayar sebagian, 4 = bayar full, 5 = batal',
   `ket` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of transaksi
 -- ----------------------------
 INSERT INTO `transaksi` VALUES (1, '2023-07-16 13:38:14', '202307-001', 'Aqkly hermawan', 'TES', NULL, 1, '2023-07-16', 'paketan', 0, 0, 0, 0, 0, 6, 6000000.00, '2023-07-17 13:38:14', 4, 'TES');
-INSERT INTO `transaksi` VALUES (2, '2023-07-16 13:52:52', '202307-002', 'ISMA', 'TES alamat', NULL, 1, '2023-07-17', 'custom', 1, 1, 1, 2, 0, 0, 17500000.00, '2023-07-17 13:52:52', 2, 'TES');
+INSERT INTO `transaksi` VALUES (2, '2023-07-16 13:52:52', '202307-002', 'ISMA', 'TES alamat', NULL, 1, '2023-07-17', 'custom', 1, 1, 1, 2, 0, 0, 17500000.00, '2023-07-17 13:52:52', 4, 'TES');
 
 -- ----------------------------
 -- Table structure for transaksi_detail
@@ -273,13 +302,14 @@ CREATE TABLE `transaksi_detail`  (
   `total_bayar` decimal(16, 2) NULL DEFAULT NULL,
   `bukti_bayar` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of transaksi_detail
 -- ----------------------------
 INSERT INTO `transaksi_detail` VALUES (3, 1, '2023-07-16', 3000000.00, 'dash1.PNG');
 INSERT INTO `transaksi_detail` VALUES (4, 1, '2023-07-16', 3000000.00, 'ap3.PNG');
+INSERT INTO `transaksi_detail` VALUES (6, 2, '2023-09-23', 17500000.00, 'ping1.PNG');
 
 -- ----------------------------
 -- Table structure for user
@@ -294,7 +324,7 @@ CREATE TABLE `user`  (
   `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of user

@@ -98,6 +98,19 @@ class Paket_model extends CI_Model {
 		}
 	}
 
+	public function nama_paket($id)
+	{
+		$c = "SELECT nama_paket FROM paket WHERE id = '$id'";
+
+		$query = $this->db->query($c);
+
+		if($query->num_rows() > 0){
+			return $query->result_array()[0]['nama_paket'];
+		}else{
+			return null;
+		}
+	}
+
 	public function tambah($data)
 	{
 		$this->db->insert('paket', $data);
@@ -176,5 +189,14 @@ class Paket_model extends CI_Model {
 		$c  = "UPDATE paket SET status = '0' WHERE id = '$id'";
 
 		$this->db->query($c);
+	}
+
+	public function get_gambar($id)
+	{
+		$c  = "SELECT id, id_paket, img FROM image_paket WHERE id_paket = '$id'";
+
+		$query = $this->db->query($c);
+
+		return $query->result_array();
 	}
 }

@@ -39,18 +39,25 @@ class Dashboard extends CI_Controller {
 		$kostum 	= $this->kostum->listing();
 		$paket 		= $this->paket->listing();
 
+		$x = 0;
+		foreach($paket as $p){
+			$paket[$x]['gambar'] = $this->paket->get_gambar($p['id']);
+ 			$x++;
+		}
+
 		$konfigurasi 	= $this->konfigurasi_model->listing();
 
 		$trans     = $this->konfigurasi_model->get_trans($id_user);
 
 		$x = 0;
 		foreach ($trans as $t) {
-			$trans[$x]['nama_paket'] = $this->konfigurasi_model->get_nama_paket($t['id_paket']);
-			$trans[$x]['nama_tema'] = $this->konfigurasi_model->get_nama_tema($t['id_tema']);
-			$trans[$x]['nama_musik'] = $this->konfigurasi_model->get_nama_musik($t['id_musik']);
-			$trans[$x]['nama_makeup'] = $this->konfigurasi_model->get_nama_makeup($t['id_makeup']);
-			$trans[$x]['nama_photo'] = $this->konfigurasi_model->get_nama_photo($t['id_photo']);
+			$trans[$x]['nama_paket'] 	= $this->konfigurasi_model->get_nama_paket($t['id_paket']);
+			$trans[$x]['nama_tema'] 	= $this->konfigurasi_model->get_nama_tema($t['id_tema']);
+			$trans[$x]['nama_musik'] 	= $this->konfigurasi_model->get_nama_musik($t['id_musik']);
+			$trans[$x]['nama_makeup'] 	= $this->konfigurasi_model->get_nama_makeup($t['id_makeup']);
+			$trans[$x]['nama_photo'] 	= $this->konfigurasi_model->get_nama_photo($t['id_photo']);
 			$trans[$x]['nama_kostum'] = $this->konfigurasi_model->get_nama_kostum($t['id_kostum']);
+			$trans[$x]['total_bayar'] 	= $this->konfigurasi_model->get_total_bayar($t['id']);
 			$x++;
 		}
 
