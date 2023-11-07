@@ -19,6 +19,7 @@
   	<link href="<?=base_url()?>assets/user/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vx/app-assets/vendors/css/pickers/pickadate/pickadate.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vx/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" rel="stylesheet" />
     <title><?=$title?></title>
 </head>
 
@@ -139,8 +140,12 @@
             <div id="tab-3-content" class="tab-content-item">
                 <?php if(empty($_SESSION['uid'])){ ?>
                     <h4>Silahkan login untuk booking Rumah Rias Yasmine</h4>
-                <?php }else{ ?>
 
+                    <div style="border: 1px solid #fff"></div>
+                    <br>
+
+                    <div id="kalender"><div>
+                <?php }else{ ?>
                     <div>
                         <div class="row text-center">
                             <h3 class="col-sm-12">FORM BOOKING WEDDING</h3>
@@ -220,7 +225,7 @@
                         </div>
 
                         <br>
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th>TGL BOOKING</th>
@@ -281,15 +286,17 @@
                                             <?php }else if($t['status'] == '2'){ ?>
                                                 <div>Menunggu Pembayaran (Silahkan membayar tgl booking Rp. 3000.000,00 agar tgl anda terbooking sebelum tgl: <?=date('d-m-Y H:i:s', strtotime($t['jth_tempo_bayar']))?>)</div>
                                             <?php }else if($t['status'] == '3'){ ?>
-                                                <div>Bayar Sebagian</div>
+                                                <div>Menunggu Konf Pembayaran</div>
                                             <?php }else if($t['status'] == '4'){ ?>
-                                                <div>Sudah Full Bayar</div>
+                                                <div>Bayar Sebagian</div>
                                             <?php }else if($t['status'] == '5'){ ?>
+                                                <div>Sudah Full Bayar</div>
+                                            <?php }else if($t['status'] == '6'){ ?>
                                                 <div>Batal</div>
                                             <?php } ?>
 
                                             <?php if($t['total_bayar'] < $t['total_harga']){ ?>
-                                                <button type="button" onclick="konf_trans('<?=$t['id']?>')" class="btn btn-success btn-xs">Konf Bayar</button>
+                                                <button type="button" onclick="konf_trans('<?=$t['id']?>')" class="btn btn-success btn-xs">Upload Bukti Bayar</button>
                                             <?php } ?>
                                         </td>
 
@@ -297,8 +304,11 @@
                                 <?php } ?>
                             </tbody>
                         </table>
-                    </div>
+                        <div style="border: 1px solid #fff"></div>
+                    <br>
 
+                    <div id="kalender"><div>
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -317,7 +327,6 @@
             PEMASANGAN TENDA</li>
             <li>JIKA ADA TAMBAHAN MAKE UP KENA CHARGE PER ORANG</li>
         <div>
-            
     </section>
 
 	<footer class="footer">
@@ -661,7 +670,6 @@
   	<script src="<?=base_url()?>assets/user/lib/owlcarousel/owl.carousel.min.js"></script>
   	<script src="<?=base_url()?>assets/user/lib/lightbox/js/lightbox.min.js"></script>
  	<script src="<?=base_url()?>assets/user/lib/typed/typed.min.js"></script>
-
     <script src="<?= base_url(); ?>assets/vx/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
     <script src="<?= base_url(); ?>assets/vx/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
     <script src="<?= base_url(); ?>assets/vx/app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
@@ -671,9 +679,16 @@
     <script src="<?= base_url(); ?>assets/vx/app-assets/js/scripts/forms/pickers/form-pickers.js"></script>
     <script src="<?= base_url() ?>assets/vx/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+
  	<script type="text/javascript">
 
     $(document).ready(function(){
+
+          $('#kalender').fullCalendar({
+            events: <?=$arr2?>
+          });
 
         $('#tgl_booking').flatpickr({
           enableTime: false,

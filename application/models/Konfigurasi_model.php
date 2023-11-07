@@ -315,7 +315,7 @@ class Konfigurasi_model extends CI_Model {
 
 	public function get_tgl_book()
 	{
-		$c = "SELECT tgl_booking FROM transaksi WHERE status != '5' ORDER BY tgl_booking ASC";
+		$c = "SELECT tgl_booking, nama_pemesan FROM transaksi WHERE status > 3 && status != '6' ORDER BY tgl_booking ASC";
 
 		$query = $this->db->query($c);
 

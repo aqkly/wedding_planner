@@ -63,9 +63,13 @@ class Dashboard extends CI_Controller {
 
 		$arr_trans = $this->konfigurasi_model->get_tgl_book();
 
-		$arr = [];
+		$arr  = [];
+		$arr2 = [];
+		$x = 0;
 		foreach($arr_trans as $a){
 			$arr[] = $a['tgl_booking']; 
+			$arr2[$x]['title'] = 'Sudah Terbooking Oleh '.$a['nama_pemesan'];
+			$arr2[$x]['start'] = $a['tgl_booking'];
 		}
 
 		$data = array(
@@ -80,7 +84,8 @@ class Dashboard extends CI_Controller {
 						'konfigurasi'	=> $konfigurasi,
 						'trans' 		=> $trans,
 						'nama_user' 	=> $nama_user,
-						'arr_trans' 	=> json_encode($arr)
+						'arr_trans' 	=> json_encode($arr),
+						'arr2' 			=> json_encode($arr2),
 					);
 
 		$this->load->view('user/index', $data);

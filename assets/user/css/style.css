@@ -98,6 +98,7 @@ img{
     padding-top:1rem !important;
     border-bottom: 3px solid #3d3d3d !important;
 }
+
 .tabs .container{
     display: grid !important;
     grid-template-columns:repeat(3, 1fr) !important;

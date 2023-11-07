@@ -39,7 +39,7 @@ if($this->session->flashdata('gagal')){
     ?>
 	    <tr>
 	      <td><?=$b['no_transaksi']?></td>
-	      <td style="white-space:nowrap"><?= date('d-m-Y', strtotime($b['tgl_booking'])) ?></td>
+	      <td><?= date('d-m-Y', strtotime($b['tgl_booking'])) ?></td>
 	      <td><?=$b['jenis_booking']?></td>
 	      <td><?=$b['nama_paket']?></td>
 	      <td><?=$b['nama_tema']?></td>
@@ -56,17 +56,23 @@ if($this->session->flashdata('gagal')){
             <?php }else if($b['status'] == '2'){ ?>
                 Menunggu Pembayaran
             <?php }else if($b['status'] == '3'){ ?>
-                Bayar Sebagian
+                Menunggu Konf Pembayaran
             <?php }else if($b['status'] == '4'){ ?>
-                Sudah Full Bayar
+                Bayar Sebagian
             <?php }else if($b['status'] == '5'){ ?>
+                Sudah Full Bayar
+            <?php }else if($b['status'] == '6'){ ?>
                 Batal
             <?php } ?>
 	      </td>
-	      <td style="white-space:nowrap; ">
+	      <td>
           <a href="<?=base_url('admin/transaksi/detail/'.$b['id'])?>" class="btn btn-info btn-xs">Detail</a>
 
-	      	<?php if($b['status'] != '5' && $b['status'] != '3' && $b['status'] != '4'){ ?>
+          <?php if($b['status'] == '3'){ ?>
+            <button type="button" onclick="konf_bayar('<?=$b['id']?>')" class="btn btn-warning btn-xs">Konf Bayar</button>
+          <?php } ?>
+
+	      	<?php if($b['status'] != '6' && $b['status'] != '4' && $b['status'] != '5'){ ?>
 	      		<button type="button" onclick="batal_trans('<?=$b['id']?>')" class="btn btn-danger btn-xs">Batalkan</button>
 	      	<?php } ?>
 

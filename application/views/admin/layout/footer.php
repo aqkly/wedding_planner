@@ -121,6 +121,45 @@ function batal_trans(id)
    });
 }
 
+function konf_bayar(id)
+{
+  Swal.fire({
+      title: 'Peringatan!',
+      text: 'Yakin Konfirmasi Bayar ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, Konfirmasi!',
+      customClass: {
+        confirmButton: 'btn btn-success btn-sm',
+        cancelButton: 'btn btn-danger btn-sm ml-1'
+      },
+    }).then(function (result) {
+        if (result.value) {
+            $.ajax({
+              type: "POST",
+              url: "<?= base_url('admin/transaksi/konf_bayar') ?>",
+              data: "id="+id,
+              dataType: "JSON",
+              success: function (data) {
+              if(data.result == 'sukses'){
+                  Swal.fire({
+                          icon: 'success',
+                          title: 'Berhasil!',
+                          text: 'Konfirmasi Bayar Sukses',
+                          timer: 3000,
+                          customClass: {
+                            confirmButton: 'btn btn-success'
+                          }
+                        });
+
+                 window.location.reload(); 
+              }
+             }
+          });
+       }
+   });
+}
+
 function konf_trans(id)
 {
   $.ajax({

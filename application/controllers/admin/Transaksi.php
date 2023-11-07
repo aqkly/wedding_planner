@@ -128,7 +128,7 @@ class Transaksi extends CI_Controller {
 			$tot_bayar_asli = ($history_bayar + $total_bayar);
 
 			if( $tot_bayar_asli == $total_harga ){
-				$status = '4';
+				$status = '3';
 			}else if(($history_bayar + $total_bayar) > $total_harga){
 				$this->session->set_flashdata('gagal', 'Total bayar Tidak boleh melebihi Total harga');
 				redirect(base_url('admin/transaksi'),'refresh');
@@ -144,6 +144,32 @@ class Transaksi extends CI_Controller {
 			$this->session->set_flashdata('sukses', 'Konfirmasi bayar sukses');
 			redirect(base_url('dashboard'),'refresh');
 		}
+	}
+
+	public function konf_bayar()
+	{
+			$i 				= $this->input;
+			$id 			= $i->post('id');
+			$id_admin   	= $_SESSION['id_user'];
+
+			$total_harga  	= $this->konf->get_harga($id);
+			$history_bayar  = $this->konf->get_total_bayar($id);
+
+			$tot_bayar_asli = $history_bayar;
+
+			if( $tot_bayar_asli == $total_harga ){
+				$status = '5';
+			}else if($history_bayar > $total_harga){
+				$this->session->set_flashdata('gagal', 'Total bayar Tidak boleh melebihi Total harga');
+				redirect(base_url('admin/transaksi'),'refresh');
+				die;
+			}else{
+				$status = '4';
+			}
+			
+			$this->db->query("UPDATE transaksi SET status = '$status' WHERE id = '$id'");
+
+			echo json_encode(['result' => 'sukses']);
 	}
 
 	public function get_harga()
