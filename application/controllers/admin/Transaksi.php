@@ -76,7 +76,7 @@ class Transaksi extends CI_Controller {
 	{
 		$id = $_POST['id'];
 
-		$query = $this->db->query("UPDATE transaksi SET status = '5' WHERE id = '$id'");
+		$query = $this->db->query("UPDATE transaksi SET status = '6' WHERE id = '$id'");
 
 		if($query){
 			echo json_encode(['result' => 'sukses']);

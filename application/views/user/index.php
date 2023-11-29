@@ -295,7 +295,7 @@
                                                 <div>Batal</div>
                                             <?php } ?>
 
-                                            <?php if($t['total_bayar'] < $t['total_harga']){ ?>
+                                            <?php if($t['total_bayar'] < $t['total_harga'] && $t['status'] != '6'){ ?>
                                                 <button type="button" onclick="konf_trans('<?=$t['id']?>')" class="btn btn-success btn-xs">Upload Bukti Bayar</button>
                                             <?php } ?>
                                         </td>
