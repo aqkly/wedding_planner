@@ -121,6 +121,14 @@ function batal_trans(id)
    });
 }
 
+function lihat_bbb(bb)
+{
+  var foto = "<img src='<?= base_url('assets/upload/image/')?>"+bb+"' width='100%' class='img img-thumbnail'>"
+
+  $(".ini_foto").html(foto);
+  $("#modal_foto").modal('show');
+}
+
 function konf_bayar(id)
 {
   Swal.fire({

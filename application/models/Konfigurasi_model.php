@@ -161,6 +161,15 @@ class Konfigurasi_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function list_trans_id($id)
+	{
+		$c = "SELECT * FROM transaksi WHERE id = '$id' ORDER BY id";
+
+		$query = $this->db->query($c);
+
+		return $query->result_array();
+	}
+
 	public function list_trans_2()
 	{
 		$c = "SELECT * FROM transaksi ORDER BY id";

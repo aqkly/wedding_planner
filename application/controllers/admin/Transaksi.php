@@ -49,7 +49,18 @@ class Transaksi extends CI_Controller {
 
 	public function print_data($id)
 	{
-		$trans = $this->konf->list_trans_2_det($id);	
+		$trans = $this->konf->list_trans_id($id);	
+
+		$x = 0;
+		foreach ($trans as $i) {
+			$trans[$x]['nmpaket'] = $this->konf->get_nama_paket($i['id_paket']);
+			$trans[$x]['tema'] = $this->konf->get_nama_tema($i['id_tema']);
+			$trans[$x]['musik'] = $this->konf->get_nama_musik($i['id_musik']);
+			$trans[$x]['makeup'] = $this->konf->get_nama_makeup($i['id_makeup']);
+			$trans[$x]['photo'] = $this->konf->get_nama_photo($i['id_photo']);
+			$trans[$x]['kostum'] = $this->konf->get_nama_kostum($i['id_kostum']);
+			$x++;
+		}
 
 		$no_transaksi = $this->konf->get_no_transaksi($id);	
 
